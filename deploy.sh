@@ -32,7 +32,7 @@ if ! command -v lftp &> /dev/null; then
     exit 1
 fi
 
-lftp -f <<EOF
+lftp <<EOF
 open $FTP_HOST
 user $FTP_USER $FTP_PASS
 set ssl:verify-certificate no
