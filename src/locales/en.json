@@ -1,0 +1,99 @@
+{
+    "nav": {
+        "home": "Home",
+        "engines": "Engines",
+        "company": "Company",
+        "resources": "Resources",
+        "contact": "Contact Us"
+    },
+    "hero": {
+        "subtitle_prefix": "Leading ",
+        "subtitle_highlight": "DeepTech / Deep-Tech Company",
+        "title_part1": "Building the 6 engines of",
+        "title_part2": "Agentic and Multimodal AI",
+        "description": "Technology Network for General Agents. Orchestrate, manage, and deploy autonomous AI agents to execute complex workflows seamlessly.",
+        "btn_engines": "Our Engines",
+        "btn_learn": "Learn More",
+        "visual_tag": "Your Data. Our Science."
+    },
+    "engines": {
+        "title": "Our 6 AI Engines",
+        "description": "Powering the next generation of agentic and multimodal artificial intelligence with specialized expertise across the stack.",
+        "card_learn": "Explore {{name}}",
+        "items": {
+            "TneGa": {
+                "title": "AI Agents",
+                "description": "Orchestrate, manage, and deploy autonomous AI agents to execute complex workflows seamlessly.",
+                "features": [
+                    "Multi-agent orchestration",
+                    "Memory agents",
+                    "Agent tools",
+                    "Agent workflow"
+                ]
+            },
+            "TneKa": {
+                "title": "AI Knowledges",
+                "description": "Connect AI agents to enterprise knowledge with vector search, embeddings, and document retrieval.",
+                "features": [
+                    "Document ingestion",
+                    "Embeddings",
+                    "Vector search",
+                    "Enterprise knowledge co-pilots"
+                ]
+            },
+            "TneMa": {
+                "title": "AI Models",
+                "description": "Manage, route, and fine-tune large language models for agentic applications at scale.",
+                "features": [
+                    "Model routing",
+                    "Benchmarking",
+                    "Fine-tuning",
+                    "Open models"
+                ]
+            },
+            "TneLa": {
+                "title": "AI Machine Learning",
+                "description": "Provide pipelines, datasets, and ML workflows to train and feed AI agents effectively.",
+                "features": [
+                    "Datasets",
+                    "Training pipelines",
+                    "Data preparation",
+                    "Feature stores"
+                ]
+            },
+            "TneRa": {
+                "title": "AI Resources Cloud",
+                "description": "Ensure AI agents run reliably at scale with deployment, monitoring, evaluation, and cost optimization.",
+                "features": [
+                    "Agent deployment",
+                    "LLM monitoring",
+                    "Evaluation",
+                    "Cost tracking"
+                ]
+            },
+            "TneVa": {
+                "title": "AI Vision",
+                "description": "Enable AI agents to perceive, interpret, and act on visual data through semantic image and video understanding.",
+                "features": [
+                    "Object recognition",
+                    "Image similarity search",
+                    "Visual embeddings",
+                    "Video analysis"
+                ]
+            }
+        }
+    },
+    "cta": {
+        "title": "Ready to transform your workflow with AI Agents?",
+        "description": "Join the Technology Network and build the future of autonomous systems.",
+        "button": "Get Started Today"
+    },
+    "footer": {
+        "motto": "Building the 6 engines of agentic and multimodal AI.",
+        "links_platform": "Platform",
+        "links_company": "Company",
+        "about": "About Us",
+        "careers": "Careers",
+        "copyright": "© 2025 Exascale Deeptech & AI Pvt. Ltd. (Inspiration TneXa)"
+    }
+}

@@ -1,0 +1,99 @@
+{
+    "nav": {
+        "home": "Accueil",
+        "engines": "Moteurs",
+        "company": "Entreprise",
+        "resources": "Ressources",
+        "contact": "Contactez-nous"
+    },
+    "hero": {
+        "subtitle_prefix": "Leader en ",
+        "subtitle_highlight": "Société DeepTech / Deep-Tech",
+        "title_part1": "Construire les 6 moteurs de la",
+        "title_part2": "IA Agentique et Multimodale",
+        "description": "Réseau Technologique pour Agents Généraux. Orchestrez, gérez et déployez des agents IA autonomes pour exécuter des flux de travail complexes de manière transparente.",
+        "btn_engines": "Nos Moteurs",
+        "btn_learn": "En savoir plus",
+        "visual_tag": "Vos Données. Notre Science."
+    },
+    "engines": {
+        "title": "Nos 6 Moteurs IA",
+        "description": "Propulser la prochaine génération d'intelligence artificielle agentique et multimodale avec une expertise spécialisée à chaque niveau.",
+        "card_learn": "Explorer {{name}}",
+        "items": {
+            "TneGa": {
+                "title": "Agents IA",
+                "description": "Orchestrez, gérez et déployez des agents IA autonomes pour exécuter des flux de travail complexes de manière transparente.",
+                "features": [
+                    "Orchestration multi-agents",
+                    "Agents à mémoire",
+                    "Outils d'agents",
+                    "Workflow d'agents"
+                ]
+            },
+            "TneKa": {
+                "title": "Connaissances IA",
+                "description": "Connectez les agents IA aux connaissances de l'entreprise avec la recherche vectorielle, les embeddings et la récupération de documents.",
+                "features": [
+                    "Ingestion de documents",
+                    "Embeddings",
+                    "Recherche vectorielle",
+                    "Co-pilotes de connaissances d'entreprise"
+                ]
+            },
+            "TneMa": {
+                "title": "Modèles IA",
+                "description": "Gérez, routez et affinez les grands modèles de langage pour les applications agentiques à grande échelle.",
+                "features": [
+                    "Routage de modèles",
+                    "Benchmarking",
+                    "Fine-tuning",
+                    "Modèles ouverts"
+                ]
+            },
+            "TneLa": {
+                "title": "Apprentissage Automatique IA",
+                "description": "Fournissez des pipelines, des ensembles de données et des flux de travail ML pour former et alimenter efficacement les agents IA.",
+                "features": [
+                    "Ensembles de données",
+                    "Pipelines d'entraînement",
+                    "Préparation des données",
+                    "Feature stores"
+                ]
+            },
+            "TneRa": {
+                "title": "Ressources Cloud IA",
+                "description": "Assurez le fonctionnement fiable des agents IA à grande échelle avec le déploiement, la surveillance, l'évaluation et l'optimisation des coûts.",
+                "features": [
+                    "Déploiement d'agents",
+                    "Surveillance LLM",
+                    "Évaluation",
+                    "Suivi des coûts"
+                ]
+            },
+            "TneVa": {
+                "title": "Vision IA",
+                "description": "Permettez aux agents IA de percevoir, d'interpréter et d'agir sur les données visuelles grâce à la compréhension sémantique des images et des vidéos.",
+                "features": [
+                    "Reconnaissance d'objets",
+                    "Recherche par similitude d'image",
+                    "Embeddings visuels",
+                    "Analyse vidéo"
+                ]
+            }
+        }
+    },
+    "cta": {
+        "title": "Prêt à transformer votre workflow avec des Agents IA ?",
+        "description": "Rejoignez le Réseau Technologique et construisez l'avenir des systèmes autonomes.",
+        "button": "Commencer aujourd'hui"
+    },
+    "footer": {
+        "motto": "Construire les 6 moteurs de l'IA agentique et multimodale.",
+        "links_platform": "Plateforme",
+        "links_company": "Entreprise",
+        "about": "À propos",
+        "careers": "Carrières",
+        "copyright": "© 2025 Exascale Deeptech & AI Pvt. Ltd. (Inspiration TneXa)"
+    }
+}

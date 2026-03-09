@@ -1,0 +1,52 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: var(--transition);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo-text .primary {
+    color: var(--primary);
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.nav-list a {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.nav-list a:hover {
+    color: var(--primary);
+}
+
+.btn-contact {
+    background: var(--accent);
+    color: var(--text-light) !important;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+}
+
+.btn-contact:hover {
+    background: var(--accent-hover);
+}
