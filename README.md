@@ -18,7 +18,7 @@ TneXa is a modern AI platform focused on orchestrating autonomous agents and pro
 - **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
 - **Styling**: Vanilla CSS (Modern design system)
 - **Internationalization**: [i18next](https://www.i18next.com/) (English & French supported)
-- **Design Aesthetic**: Inspired by Exascale AI, featuring glassmorphism and modern animations.
+- **Design Aesthetic**: featuring glassmorphism and modern animations.
 
 ## 🏁 Getting Started
 
@@ -56,5 +56,4 @@ The project supports both English and French. You can switch languages using the
 
 ## 📜 License
 
-Inspired by [Exascale AI](https://exascale-ai.in).
-© 2025 TneXa AI.
+© 2026 TneXa
