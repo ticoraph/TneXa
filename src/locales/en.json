@@ -92,8 +92,37 @@
         "motto": "Building the 6 engines of agentic and multimodal AI.",
         "links_platform": "Platform",
         "links_company": "Company",
+        "links_legal": "Legal",
         "about": "About Us",
+        "partners": "Partners",
+        "legal": "Legal Mentions",
+        "sitemap": "Sitemap",
+        "cookies": "Cookie Settings",
+        "cookies_popup": "Your cookie preferences have been saved.",
         "careers": "Careers",
         "copyright": "© 2025 Exascale Deeptech & AI Pvt. Ltd. (Inspiration TneXa)"
+    },
+    "about": {
+        "title": "Who Are We?"
+    },
+    "partners": {
+        "visit": "Visit Website",
+        "engines_title": "6 Engines to Build the Future of AI",
+        "raphael_desc": "Raphaël Montico is an Agentic AI developer.",
+        "pulp_desc": "The worlds largest collection of Pulp Fiction goodies.",
+        "tnexa_desc": "Technology Network Engines. Powering the next generation of intelligent technology networks.",
+        "tnexa_tagline": "Powering the next generation of intelligent technology networks.",
+        "skipri_desc": "Skiing at a low price!",
+        "surpri_desc": "Monitor price drops!",
+        "codeparrainage_desc": "One for all and all godfathers!"
+    },
+    "contact": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "message": "Your Message",
+        "submit": "Send Message",
+        "sending": "Sending...",
+        "success_msg": "Your message has been sent successfully!",
+        "rate_limit_msg": "Too many requests. Please wait a minute before sending another message."
     }
 }

@@ -92,8 +92,37 @@
         "motto": "Construire les 6 moteurs de l'IA agentique et multimodale.",
         "links_platform": "Plateforme",
         "links_company": "Entreprise",
+        "links_legal": "Légal",
         "about": "À propos",
+        "partners": "Partenaires",
+        "legal": "Mentions Légales",
+        "sitemap": "Plan du site",
+        "cookies": "Gestion des cookies",
+        "cookies_popup": "Vos préférences de cookies ont été enregistrées.",
         "careers": "Carrières",
         "copyright": "© 2025 Exascale Deeptech & AI Pvt. Ltd. (Inspiration TneXa)"
+    },
+    "about": {
+        "title": "Qui sommes nous ?"
+    },
+    "partners": {
+        "visit": "Visiter le site",
+        "engines_title": "6 Moteurs pour construire l'avenir de l'IA",
+        "raphael_desc": "Raphaël Montico est un développeur IA Agentique.",
+        "pulp_desc": "La plus grande collection de goodies Pulp Fiction au monde.",
+        "tnexa_desc": "Technology Network Engines. Fournir l’énergie nécessaire à la prochaine génération de réseaux technologiques intelligents.",
+        "tnexa_tagline": "Fournir l’énergie nécessaire à la prochaine génération de réseaux technologiques intelligents.",
+        "skipri_desc": "Le ski à petit prix !",
+        "surpri_desc": "Surveille la baisse des prix !",
+        "codeparrainage_desc": "Un pour tous et tous parrains !"
+    },
+    "contact": {
+        "name": "Nom Complet",
+        "email": "Adresse Email",
+        "message": "Votre Message",
+        "submit": "Envoyer le message",
+        "sending": "Envoi en cours...",
+        "success_msg": "Votre message a été envoyé avec succès !",
+        "rate_limit_msg": "Trop de tentatives. Veuillez patienter une minute avant de renvoyer un message."
     }
 }
