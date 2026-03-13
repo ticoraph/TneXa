@@ -16,23 +16,9 @@ const Partners = () => {
             url: "https://pulpfiction.fr"
         },
         {
-            name: "TneXa",
-            description: t('partners.tnexa_desc'),
-            tagline: t('partners.tnexa_tagline'),
-            url: "https://tnexa.fr",
-            engines: [
-                { name: "TneGa - Agents", url: "https://tnega.fr" },
-                { name: "TneKa - Connaissances", url: "https://tneka.fr" },
-                { name: "TneMa - Modèles", url: "https://tnema.fr" },
-                { name: "TneLa - Apprentissage", url: "https://tnela.fr" },
-                { name: "TneRa - Ressources", url: "https://tnera.fr" },
-                { name: "TneVa - Vision", url: "https://tneva.fr" }
-            ]
-        },
-        {
             name: "SKIPRI",
             description: t('partners.skipri_desc'),
-            url: "https://skipri.fr"
+            url: "https://skipri.com"
         },
         {
             name: "SURPRI",

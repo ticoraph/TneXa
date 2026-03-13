@@ -18,9 +18,12 @@ TNEXA
 
 https://exascale-ai.in
 
-# 1️⃣ AI Agents
+# 6 engines
+
+## 1️⃣ AI Agents
 
 TneGa = Autonomous Agents Platform
+https://TneGa.fr
 Technology Network for General Agents
 Orchestrate, manage, and deploy autonomous AI agents to execute complex workflows seamlessly.
 
@@ -30,9 +33,10 @@ Features:
 - agent tools
 - agent workflow
 
-# 2️⃣ AI Knowledges
+## 2️⃣ AI Knowledges
 
 TneKa = AI knowledge infrastructure
+https://TneKa.fr
 Technology Network for Knowledge Agents
 Connect AI agents to enterprise knowledge with vector search, embeddings, and document retrieval.
 
@@ -42,9 +46,10 @@ Features:
 - vector search 
 - enterprise knowledge co-pilots
 
-# 3️⃣ AI Models
+## 3️⃣ AI Models
 
 TneMa = LLM and ML model management.
+https://TneMa.fr
 Technology Network for Model Agents
 Manage, route, and fine-tune large language models for agentic applications at scale.
 
@@ -54,9 +59,10 @@ Features:
 - Fine-tuning
 - Open models
 
-# 4️⃣ AI Machine Learning
+## 4️⃣ AI Machine Learning
 
 TneLa = Machine Learning and Data pipeline
+https://TneLa.fr
 Technology Network for Learning and Data Agents
 Provide pipelines, datasets, and ML workflows to train and feed AI agents effectively.
 
@@ -66,9 +72,10 @@ Features:
 - data preparation 
 - feature stores
 
-# 5️⃣ AI Ressources Cloud
+## 5️⃣ AI Ressources Cloud
 
 TneRa = Ressources, Reliability and Robustness Cloud Infrastructure and Ops
+https://TneRa.fr
 Technology Network for Ressources of Agents
 Ensure AI agents run reliably at scale with deployment, monitoring, evaluation, and cost optimization.
 
@@ -78,9 +85,10 @@ Features:
 - Evaluation
 - Cost tracking
 
-# 6️⃣ AI Vision
+## 6️⃣ AI Vision
 
 TneVa = Semantic analysis of images and videos.
+https://TneVa.fr
 Technology Network for Visual Agents
 Enable AI agents to perceive, interpret, and act on visual data through semantic image and video understanding.
 

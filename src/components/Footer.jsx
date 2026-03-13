@@ -23,14 +23,6 @@ const Footer = () => {
                 </div>
                 <div className="footer-links">
                     <div className="link-group">
-                        <h4>{t('footer.links_platform')}</h4>
-                        <ul>
-                            <li><a href="/#engines">TneGa Agents</a></li>
-                            <li><a href="/#engines">TneKa Knowledge</a></li>
-                            <li><a href="/#engines">TneMa Models</a></li>
-                        </ul>
-                    </div>
-                    <div className="link-group">
                         <h4>{t('footer.links_company')}</h4>
                         <ul>
                             <li><Link to="/about">{t('footer.about')}</Link></li>

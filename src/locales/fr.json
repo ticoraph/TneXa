@@ -8,16 +8,16 @@
     },
     "hero": {
         "subtitle_prefix": "Leader en ",
-        "subtitle_highlight": "Société DeepTech / Deep-Tech",
-        "title_part1": "Construire les 6 moteurs de la",
+        "subtitle_highlight": "IA Agentique",
+        "title_part1": "Technology Network Engines",
         "title_part2": "IA Agentique et Multimodale",
-        "description": "Réseau Technologique pour Agents Généraux. Orchestrez, gérez et déployez des agents IA autonomes pour exécuter des flux de travail complexes de manière transparente.",
+        "description": "Orchestrez des agents IA autonomes pour exécuter des flux de travail complexes de manière transparente.",
         "btn_engines": "Nos Moteurs",
         "btn_learn": "En savoir plus",
         "visual_tag": "Vos Données. Notre Science."
     },
     "engines": {
-        "title": "Nos 6 Moteurs IA",
+        "title": "6 Moteurs IA",
         "description": "Propulser la prochaine génération d'intelligence artificielle agentique et multimodale avec une expertise spécialisée à chaque niveau.",
         "card_learn": "Explorer {{name}}",
         "items": {
@@ -85,22 +85,18 @@
     },
     "cta": {
         "title": "Prêt à transformer votre workflow avec des Agents IA ?",
-        "description": "Rejoignez le Réseau Technologique et construisez l'avenir des systèmes autonomes.",
+        "description": "Rejoignez-nous et construisons ensemble l'avenir des systèmes autonomes.",
         "button": "Commencer aujourd'hui"
     },
     "footer": {
-        "motto": "Construire les 6 moteurs de l'IA agentique et multimodale.",
-        "links_platform": "Plateforme",
-        "links_company": "Entreprise",
-        "links_legal": "Légal",
+        "motto": "Les 6 moteurs de l'IA agentique et multimodale.",
         "about": "À propos",
         "partners": "Partenaires",
         "legal": "Mentions Légales",
         "sitemap": "Plan du site",
         "cookies": "Gestion des cookies",
         "cookies_popup": "Vos préférences de cookies ont été enregistrées.",
-        "careers": "Carrières",
-        "copyright": "© 2025 Exascale Deeptech & AI Pvt. Ltd. (Inspiration TneXa)"
+        "copyright": "© 2026 TneXa"
     },
     "about": {
         "title": "Qui sommes nous ?"
@@ -108,10 +104,8 @@
     "partners": {
         "visit": "Visiter le site",
         "engines_title": "6 Moteurs pour construire l'avenir de l'IA",
-        "raphael_desc": "Raphaël Montico est un développeur IA Agentique.",
+        "raphael_desc": "Raphaël Montico est un Ingénieur IA Agentique.",
         "pulp_desc": "La plus grande collection de goodies Pulp Fiction au monde.",
-        "tnexa_desc": "Technology Network Engines. Fournir l’énergie nécessaire à la prochaine génération de réseaux technologiques intelligents.",
-        "tnexa_tagline": "Fournir l’énergie nécessaire à la prochaine génération de réseaux technologiques intelligents.",
         "skipri_desc": "Le ski à petit prix !",
         "surpri_desc": "Surveille la baisse des prix !",
         "codeparrainage_desc": "Un pour tous et tous parrains !"
@@ -123,6 +117,8 @@
         "submit": "Envoyer le message",
         "sending": "Envoi en cours...",
         "success_msg": "Votre message a été envoyé avec succès !",
-        "rate_limit_msg": "Trop de tentatives. Veuillez patienter une minute avant de renvoyer un message."
+        "rate_limit_msg": "Trop de tentatives. Veuillez patienter une minute avant de renvoyer un message.",
+        "error_turnstile_msg": "Veuillez vérifier que vous n'êtes pas un robot.",
+        "error_server_msg": "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer plus tard."
     }
 }

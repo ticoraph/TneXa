@@ -90,17 +90,13 @@
     },
     "footer": {
         "motto": "Building the 6 engines of agentic and multimodal AI.",
-        "links_platform": "Platform",
-        "links_company": "Company",
-        "links_legal": "Legal",
         "about": "About Us",
         "partners": "Partners",
         "legal": "Legal Mentions",
         "sitemap": "Sitemap",
         "cookies": "Cookie Settings",
         "cookies_popup": "Your cookie preferences have been saved.",
-        "careers": "Careers",
-        "copyright": "© 2025 Exascale Deeptech & AI Pvt. Ltd. (Inspiration TneXa)"
+        "copyright": "© 2026 TneXa"
     },
     "about": {
         "title": "Who Are We?"
@@ -123,6 +119,8 @@
         "submit": "Send Message",
         "sending": "Sending...",
         "success_msg": "Your message has been sent successfully!",
-        "rate_limit_msg": "Too many requests. Please wait a minute before sending another message."
+        "rate_limit_msg": "Too many requests. Please wait a minute before sending another message.",
+        "error_turnstile_msg": "Please verify that you are not a robot.",
+        "error_server_msg": "An error occurred while sending the message. Please try again later."
     }
 }

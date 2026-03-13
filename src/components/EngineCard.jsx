@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import './EngineCard.css';
 
 const EngineCard = ({ id, name, title, description, features }) => {
@@ -21,7 +22,9 @@ const EngineCard = ({ id, name, title, description, features }) => {
                     </li>
                 ))}
             </ul>
-            <button className="btn-learn">{t('engines.card_learn', { name })}</button>
+            <Link to={`/engines/${name.toLowerCase()}`} className="btn-learn">
+                {t('engines.card_learn', { name })}
+            </Link>
         </div>
     );
 };

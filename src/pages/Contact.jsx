@@ -1,36 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 const Contact = () => {
     const { t } = useTranslation();
     const [status, setStatus] = useState('');
     const [lastSubmit, setLastSubmit] = useState(0);
+    const [turnstileToken, setTurnstileToken] = useState(null);
+    const formRef = useRef();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // 3. Rate limit API (local safeguard)
+        // 1. Client-side Rate limit (1 minute)
         const now = Date.now();
         if (now - lastSubmit < 60000) {
             setStatus('error_rate_limit');
             return;
         }
 
+        // 2. Turnstile Verification
+        if (!turnstileToken) {
+            setStatus('error_turnstile');
+            return;
+        }
+
         const formData = new FormData(e.target);
         
-        // 2. Honeypot check
+        // 3. Honeypot check
         if (formData.get('_honey')) {
             console.log('Bot detected');
             setStatus('success'); // Fake success for bots
             return;
         }
 
-        // Simulate sending via Resend
         setStatus('sending');
-        setTimeout(() => {
-            setStatus('success');
-            setLastSubmit(now);
-        }, 1500);
+
+        try {
+            // 4. API integration via PHP proxy (production ready)
+            const response = await fetch('/api/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    message: formData.get('message'),
+                    turnstileToken: turnstileToken
+                })
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setLastSubmit(now);
+                formRef.current.reset();
+            } else {
+                setStatus('error_server');
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            setStatus('error_server');
+        }
     };
 
     return (
@@ -38,7 +67,7 @@ const Contact = () => {
             <div className="container section-padding">
                 <h1 className="gradient-text">{t('nav.contact')}</h1>
                 <div className="contact-container glass animate">
-                    <form onSubmit={handleSubmit} className="contact-form">
+                    <form ref={formRef} onSubmit={handleSubmit} className="contact-form">
                         {/* 2. Honeypot field (hidden) */}
                         <div style={{ display: 'none' }}>
                             <input type="text" name="_honey" tabIndex="-1" autoComplete="off" />
@@ -59,11 +88,14 @@ const Contact = () => {
                             <textarea id="message" name="message" required className="glass-input" rows="5"></textarea>
                         </div>
 
-                        {/* 1. Cloudflare Turnstile Placeholder */}
+                        {/* 1. Cloudflare Turnstile */}
                         <div className="turnstile-container">
-                            <div className="cf-turnstile-placeholder glass">
-                                <span>Cloudflare Turnstile Anti-Spam</span>
-                            </div>
+                            <Turnstile 
+                                siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'} 
+                                onSuccess={(token) => setTurnstileToken(token)}
+                                onExpire={() => setTurnstileToken(null)}
+                                onError={() => setStatus('error_turnstile')}
+                            />
                         </div>
 
                         <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
@@ -72,6 +104,8 @@ const Contact = () => {
 
                         {status === 'success' && <p className="status-msg success">{t('contact.success_msg')}</p>}
                         {status === 'error_rate_limit' && <p className="status-msg error">{t('contact.rate_limit_msg')}</p>}
+                        {status === 'error_turnstile' && <p className="status-msg error">{t('contact.error_turnstile_msg')}</p>}
+                        {status === 'error_server' && <p className="status-msg error">{t('contact.error_server_msg')}</p>}
                     </form>
                 </div>
             </div>
