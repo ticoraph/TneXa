@@ -96,7 +96,9 @@
         "sitemap": "Sitemap",
         "cookies": "Cookie Settings",
         "cookies_popup": "Your cookie preferences have been saved.",
-        "copyright": "© 2026 TneXa"
+        "copyright": "© 2026 TneXa",
+        "links_company": "Company",
+        "links_legal": "Legal"
     },
     "about": {
         "title": "Who Are We?"

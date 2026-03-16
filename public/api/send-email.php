@@ -49,9 +49,9 @@ if (!$verifyResult['success']) {
 // 4. Send Email via Resend
 $resendUrl = 'https://api.resend.com/emails';
 $emailData = [
-    'from' => 'TneXa Contact <onboarding@resend.dev>', // Update with verified domain
+    'from' => 'TneXa Contact <contact@tnexa.fr>', // Update with verified domain
     'to' => [$config['to_email']],
-    'subject' => 'New Contact Form Submission: ' . $name,
+    'subject' => 'New Contact Form TneXa: ' . $name,
     'html' => "
         <h3>New Message from TneXa Website</h3>
         <p><strong>Name:</strong> {$name}</p>

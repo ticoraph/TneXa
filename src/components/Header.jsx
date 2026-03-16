@@ -16,7 +16,6 @@ const Header = () => {
                 <nav className="nav">
                     <ul className="nav-list">
                         <li><Link to="/">{t('nav.home')}</Link></li>
-                        <li><a href="/#engines">{t('nav.engines')}</a></li>
                         <li><Link to="/about">{t('nav.company')}</Link></li>
                         <li><LanguageSwitcher /></li>
                         <li><Link to="/contact" className="btn-contact">{t('nav.contact')}</Link></li>

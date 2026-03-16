@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --primary: #F15B39;
-  --primary-hover: #d14a2b;
-  --secondary: #F99F3E;
-  --accent: #5DA7CA;
-  --accent-hover: #3885A8;
-  --bg-main: #FFFFFF;
-  --bg-light: #F5F9FB;
-  --bg-dark: #011627;
-  --text-main: #000000;
-  --text-subtle: #64748B;
+  --primary: #FF7043; /* Adjusted Orange */
+  --primary-hover: #F4511E;
+  --secondary: #FFA726;
+  --accent: #FFAB91;
+  --accent-hover: #FF8A65;
+  --bg-main: #0A0A0A; /* Very dark gray/black */
+  --bg-light: #1A1A1A;
+  --bg-dark: #000000;
+  --text-main: #FFFFFF; /* White text */
+  --text-subtle: #A0A0A0;
   --text-light: #FFFFFF;
-  --glass: rgba(255, 255, 255, 0.7);
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --glass: rgba(255, 255, 255, 0.05);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   --transition: all 0.3s ease;
 }
 
@@ -72,6 +72,7 @@ button {
 .gradient-text {
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

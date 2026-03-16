@@ -1,13 +1,13 @@
 .footer {
-    padding: 6rem 0 2rem;
+    padding: 3rem 0 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--bg-dark);
 }
 
 .footer-container {
-    display: grid;
-    grid-template-columns: 1.5fr 3fr;
-    gap: 4rem;
-    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
 }
 
 .footer-brand .footer-motto {
@@ -38,14 +38,16 @@
 .footer-links {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 4rem;
+    text-align: center;
 }
 
 .link-group h4 {
-    color: var(--text-light);
+    color: var(--primary);
     margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .link-group ul {
@@ -58,9 +60,7 @@
 
 .link-group ul li a {
     color: var(--text-subtle);
-    text-decoration: none;
-    transition: var(--transition);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .link-group ul li a:hover {

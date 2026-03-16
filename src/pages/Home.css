@@ -1,0 +1,134 @@
+.home-container {
+    width: 100vw;
+    min-height: calc(100vh - 80px); /* Allow room for footer naturally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-main);
+    position: relative;
+    padding: 80px 0;
+}
+
+.planetary-system {
+    position: relative;
+    width: 800px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.central-planet-wrapper {
+    position: absolute;
+    z-index: 10;
+}
+
+.central-planet-wrapper.no-link {
+    cursor: default;
+}
+
+.central-planet {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, var(--primary), var(--primary-hover));
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 30px var(--primary);
+    animation: pulse 4s infinite ease-in-out;
+}
+
+.planet-name {
+    color: white;
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.satellite-planet {
+    position: absolute;
+    background: #111;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(255, 112, 67, 0.3);
+    animation: float 6s infinite ease-in-out;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, margin-top 0.3s ease;
+}
+
+.satellite-planet:hover {
+    animation-play-state: paused;
+    box-shadow: 0 0 40px currentColor;
+    z-index: 15;
+    transform: scale(1.15) !important;
+}
+
+.satellite-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.satellite-name {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.satellite-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--text-main);
+    opacity: 0.8;
+}
+
+.svg-connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.connection-line {
+    stroke-width: 1;
+    stroke-dasharray: 4, 4;
+    opacity: 0.3;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 30px var(--primary); }
+    50% { transform: scale(1.05); box-shadow: 0 0 50px var(--primary); }
+}
+
+@keyframes float {
+    0%, 100% { margin-top: 0; }
+    50% { margin-top: -10px; }
+}
+
+@media (max-width: 768px) {
+    .planetary-system {
+        width: 100%;
+        height: 100%;
+    }
+    .central-planet {
+        width: 100px;
+        height: 100px;
+    }
+    .satellite-planet {
+        width: 60px;
+        height: 60px;
+    }
+    .planet-name {
+        font-size: 1rem;
+    }
+}
