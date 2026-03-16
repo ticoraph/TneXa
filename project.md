@@ -14,6 +14,16 @@ TNEXA
 ├── TneRa Ressources
 └── TneVa Vision
 
+TneXa
+│
+├── TneGa
+├── TneKa
+├── TneMa
+├── TneLa
+├── TneRa
+└── TneVa
+
+
 # Example of inspiration for graphic design
 
 https://exascale-ai.in

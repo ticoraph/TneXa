@@ -6,7 +6,7 @@ header('Content-Type: application/json');
 $config = [
     'resend_api_key' => 're_3zZvi2PG_EmcEc6n6Muj6xuD4m4t7bAxg', // Replace with real key
     'turnstile_secret_key' => '0x4AAAAAACpybv2K3d3cI-nMgQHv0huX1aU', // Replace with real key
-    'to_email' => 'tico@outlook.fr'
+    'to_email' => 'contact@tnexa.fr'
 ];
 
 // 2. Get POST data
