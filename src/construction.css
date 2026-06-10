@@ -1,0 +1,206 @@
+/* ============================================
+   CONSTRUCTION PAGE — TneXa
+   ============================================ */
+
+/* Full-screen container */
+.construction-page {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0A0A0A;
+    overflow: hidden;
+
+    /* Entrance: start invisible */
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.construction-page.is-loaded {
+    opacity: 1;
+}
+
+/* ---- Animated background orbs ---- */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    will-change: transform;
+}
+
+.orb-1 {
+    width: 600px;
+    height: 600px;
+    top: -200px;
+    left: -200px;
+    background: radial-gradient(circle, rgba(255, 112, 67, 0.18) 0%, transparent 70%);
+    animation: drift1 20s ease-in-out infinite;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    bottom: -150px;
+    right: -150px;
+    background: radial-gradient(circle, rgba(93, 167, 202, 0.14) 0%, transparent 70%);
+    animation: drift2 25s ease-in-out infinite;
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    bottom: 30%;
+    left: 20%;
+    background: radial-gradient(circle, rgba(255, 167, 38, 0.09) 0%, transparent 70%);
+    animation: drift3 18s ease-in-out infinite;
+}
+
+@keyframes drift1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%       { transform: translate(60px, 80px) scale(1.1); }
+}
+
+@keyframes drift2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%       { transform: translate(-50px, -70px) scale(1.08); }
+}
+
+@keyframes drift3 {
+    0%, 100% { transform: translate(0, 0); }
+    50%       { transform: translate(40px, -40px); }
+}
+
+/* ---- Subtle grid overlay ---- */
+.grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+/* ---- Main content ---- */
+.construction-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2rem;
+    max-width: 700px;
+    animation: riseIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+@keyframes riseIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Brand logotype ---- */
+.brand {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 2.5rem;
+}
+
+.brand-prefix {
+    color: #FFFFFF;
+}
+
+.brand-suffix {
+    background: linear-gradient(90deg, #FF7043, #FFA726);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ---- Status badge ---- */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    background: rgba(255, 112, 67, 0.1);
+    border: 1px solid rgba(255, 112, 67, 0.3);
+    color: #FF7043;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #FF7043;
+    box-shadow: 0 0 0 0 rgba(255, 112, 67, 0.6);
+    animation: pulse-dot 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 112, 67, 0.6); }
+    50%       { box-shadow: 0 0 0 8px rgba(255, 112, 67, 0); }
+}
+
+/* ---- Title ---- */
+.construction-title {
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    color: #FFFFFF;
+    margin-bottom: 1.8rem;
+}
+
+/* Reuse existing .gradient-text from index.css */
+
+/* ---- Description ---- */
+.construction-desc {
+    color: #A0A0A0;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+}
+
+/* ---- Decorative divider ---- */
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.divider span {
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #FF7043, #FFA726);
+    animation: expand-bar 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+}
+
+.divider span:nth-child(1) { width: 40px; opacity: 0.4; }
+.divider span:nth-child(2) { width: 80px; }
+.divider span:nth-child(3) { width: 40px; opacity: 0.4; }
+
+@keyframes expand-bar {
+    from { transform: scaleX(0); opacity: 0; }
+    to   { transform: scaleX(1); opacity: 1; }
+}
+
+/* ---- Tagline ---- */
+.construction-tagline {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #555555;
+}
