@@ -1,0 +1,123 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = siteConfig.description,
+  noindex = false,
+} = Astro.props;
+const pageTitle = title ? `${title} — ${siteConfig.name}` : `${siteConfig.name} — Systèmes IA utiles, mesurables et fiables`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#071b18" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta name="twitter:card" content="summary" />
+    <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: Astro.site,
+      email: siteConfig.email,
+    })} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <header class="site-header">
+      <div class="container">
+        <div class="nav-shell">
+          <a class="brand" href="/" aria-label="TneXa, accueil">
+            <span class="brand-mark" aria-hidden="true"></span>
+            TneXa
+          </a>
+          <nav class="desktop-nav" aria-label="Navigation principale">
+            {siteConfig.navigation.map((item) => (
+              <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
+            ))}
+            <a class="button" href="/contact">Parler de votre projet <span aria-hidden="true">↗</span></a>
+          </nav>
+          <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-navigation">
+            <span></span><span></span>
+          </button>
+        </div>
+        <nav class="mobile-nav" id="mobile-navigation" aria-label="Navigation mobile" data-open="false">
+          {siteConfig.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+          <a href="/contact">Parler de votre projet</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <a class="brand footer-brand" href="/">
+              <span class="brand-mark" aria-hidden="true"></span>
+              TneXa
+            </a>
+            <p class="footer-statement">Des systèmes IA connectés à vos données, conçus pour produire des résultats concrets.</p>
+          </div>
+          <div>
+            <p class="footer-heading">Explorer</p>
+            <nav class="footer-links" aria-label="Navigation secondaire">
+              <a href="/expertises/agents-ia">Agents IA</a>
+              <a href="/expertises/data-machine-learning">Data &amp; machine learning</a>
+              <a href="/realisations">Réalisations</a>
+              <a href="/a-propos">À propos</a>
+            </nav>
+          </div>
+          <div>
+            <p class="footer-heading">Contact</p>
+            <div class="footer-links">
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+              <a href="/contact">Présenter un projet</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© {new Date().getFullYear()} TneXa. Tous droits réservés.</span>
+          <span><a href="/mentions-legales">Mentions légales</a> · <a href="/confidentialite">Confidentialité</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector('.menu-toggle');
+      const mobileNav = document.querySelector('.mobile-nav');
+
+      toggle?.addEventListener('click', () => {
+        const isOpen = mobileNav?.getAttribute('data-open') === 'true';
+        mobileNav?.setAttribute('data-open', String(!isOpen));
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        toggle.setAttribute('aria-label', isOpen ? 'Ouvrir le menu' : 'Fermer le menu');
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCta from '../components/ContactCta.astro';
+---
+
+<BaseLayout
+  title="Réalisations"
+  description="Découvrez les types de missions menées par TneXa autour des agents IA, de l'automatisation, de la data et du machine learning."
+>
+  <header class="content-hero container">
+    <p class="eyebrow">Réalisations</p>
+    <h1>Des cas concrets, documentés par leurs résultats.</h1>
+    <p class="lede">Les études de cas nominatives seront publiées après validation des clients concernés. Voici les familles de résultats sur lesquelles TneXa intervient.</p>
+  </header>
+
+  <section class="container cases" aria-label="Types de réalisations">
+    <article>
+      <span>Agents IA</span>
+      <h2>Qualifier et traiter des demandes</h2>
+      <p>Recherche de contexte, classification, préparation de réponse et transmission aux outils métier avec validation humaine.</p>
+      <ul><li>Temps de traitement</li><li>Taux de couverture</li><li>Qualité des réponses</li></ul>
+    </article>
+    <article>
+      <span>Machine learning</span>
+      <h2>Anticiper une charge ou une demande</h2>
+      <p>Construction d’une baseline, comparaison de modèles et intégration de prévisions dans le processus de planification.</p>
+      <ul><li>Erreur de prévision</li><li>Capacité utilisée</li><li>Coût évité</li></ul>
+    </article>
+    <article>
+      <span>IA documentaire</span>
+      <h2>Exploiter des documents métier</h2>
+      <p>Extraction, contrôle, recherche et synthèse d’informations avec renvoi systématique vers les sources utilisées.</p>
+      <ul><li>Précision d’extraction</li><li>Temps de recherche</li><li>Traçabilité</li></ul>
+    </article>
+  </section>
+
+  <div class="container">
+    <ContactCta title="Votre projet peut devenir le prochain cas documenté" />
+  </div>
+</BaseLayout>
+
+<style>
+  .content-hero h1 { max-width: 15ch; }
+  .cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding-bottom: 2rem; }
+  article { display: flex; min-height: 30rem; padding: 2rem; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--white); flex-direction: column; }
+  article > span { margin-bottom: auto; color: #4d6d67; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+  article h2 { margin: 4rem 0 1rem; font-size: clamp(1.8rem, 3vw, 2.7rem); }
+  article p { color: var(--ink-soft); }
+  article ul { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.4rem 0 0; padding: 0; list-style: none; }
+  article li { padding: 0.4rem 0.6rem; border-radius: 999px; background: var(--paper-deep); font-size: 0.73rem; font-weight: 700; }
+  @media (max-width: 900px) { .cases { grid-template-columns: 1fr; } article { min-height: 23rem; } }
+</style>

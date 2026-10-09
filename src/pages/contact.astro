@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config';
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY
+  ?? (import.meta.env.DEV ? '1x00000000000000000000AA' : '');
+const formEnabled = Boolean(turnstileSiteKey);
+---
+
+<BaseLayout
+  title="Contact"
+  description="Présentez votre projet d'intelligence artificielle, de data ou de machine learning à TneXa."
+>
+  <section class="contact-shell container">
+    <div class="contact-copy">
+      <p class="eyebrow">Contact</p>
+      <h1>Parlons de ce que vous voulez transformer.</h1>
+      <p class="lede">Décrivez le processus, la décision ou l’expérience que vous souhaitez améliorer. Un premier échange permettra de qualifier le cas d’usage et les prochaines étapes.</p>
+      <div class="direct-contact">
+        <span>Ou écrivez directement à</span>
+        <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+      </div>
+    </div>
+
+    <form class="contact-form surface" id="contact-form" action="/api/contact" method="post">
+      <div class="field-row">
+        <label>
+          <span>Nom *</span>
+          <input name="name" autocomplete="name" required />
+        </label>
+        <label>
+          <span>Entreprise</span>
+          <input name="company" autocomplete="organization" />
+        </label>
+      </div>
+      <label>
+        <span>E-mail professionnel *</span>
+        <input type="email" name="email" autocomplete="email" required />
+      </label>
+      <label>
+        <span>Votre besoin *</span>
+        <textarea name="message" rows="7" minlength="20" maxlength="3000" required placeholder="Contexte, problème actuel et résultat recherché…"></textarea>
+      </label>
+      <label class="honeypot" aria-hidden="true">
+        <span>Votre site web</span>
+        <input name="website" tabindex="-1" autocomplete="off" />
+      </label>
+      <input type="hidden" name="startedAt" value="" />
+      <label class="consent">
+        <input type="checkbox" name="consent" required />
+        <span>J’accepte que TneXa utilise ces informations uniquement pour répondre à ma demande.</span>
+      </label>
+      {formEnabled ? (
+        <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" data-size="flexible"></div>
+      ) : (
+        <p class="setup-note">Le formulaire sera activé dès que la clé Turnstile de production sera configurée.</p>
+      )}
+      <button class="button" type="submit" disabled={!formEnabled}>Envoyer le message <span aria-hidden="true">↗</span></button>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      <p class="form-note">Protection antispam par Cloudflare Turnstile. Aucun message n’est stocké dans une base de données du site.</p>
+    </form>
+  </section>
+
+  {formEnabled && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+
+  <script>
+    const form = document.querySelector('#contact-form');
+    const startedAt = form?.querySelector('input[name="startedAt"]');
+    const status = document.querySelector('#form-status');
+    const submitButton = form?.querySelector('button[type="submit"]');
+
+    if (startedAt instanceof HTMLInputElement) startedAt.value = String(Date.now());
+
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!(form instanceof HTMLFormElement) || !form.reportValidity()) return;
+
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = true;
+        submitButton.firstChild!.textContent = 'Envoi en cours… ';
+      }
+      if (status) {
+        status.textContent = '';
+        status.removeAttribute('data-state');
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { accept: 'application/json' },
+        });
+        const result = await response.json();
+
+        if (!response.ok || !result.ok) throw new Error(result.message || 'Échec de l’envoi.');
+
+        if (status) {
+          status.textContent = result.message;
+          status.setAttribute('data-state', 'success');
+        }
+        form.reset();
+        if (startedAt instanceof HTMLInputElement) startedAt.value = String(Date.now());
+      } catch (error) {
+        if (status) {
+          status.textContent = error instanceof Error ? error.message : 'L’envoi a échoué. Réessayez plus tard.';
+          status.setAttribute('data-state', 'error');
+        }
+      } finally {
+        const turnstileWindow = window as Window & { turnstile?: { reset: () => void } };
+        turnstileWindow.turnstile?.reset();
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = false;
+          submitButton.firstChild!.textContent = 'Envoyer le message ';
+        }
+      }
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .contact-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(28rem, 0.75fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: start;
+    padding-block: clamp(5rem, 10vw, 9rem);
+  }
+
+  h1 { max-width: 10ch; font-size: clamp(3.2rem, 7vw, 6.5rem); }
+  .lede { margin-top: 2rem; }
+
+  .direct-contact { display: grid; gap: 0.25rem; margin-top: 3rem; }
+  .direct-contact span { color: var(--ink-soft); font-size: 0.84rem; }
+  .direct-contact a { font-size: 1.25rem; font-weight: 750; text-underline-offset: 0.3em; }
+
+  .contact-form { display: grid; gap: 1.3rem; padding: clamp(1.5rem, 4vw, 2.7rem); }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  label:not(.consent) { display: grid; gap: 0.5rem; }
+  label > span { font-size: 0.84rem; font-weight: 700; }
+  input:not([type='checkbox']), textarea { width: 100%; border: 1px solid var(--line); border-radius: 0.65rem; color: var(--ink); background: var(--paper); }
+  input:not([type='checkbox']) { min-height: 3.25rem; padding: 0.7rem 0.85rem; }
+  textarea { min-height: 10rem; padding: 0.85rem; resize: vertical; }
+  input:focus, textarea:focus { border-color: var(--ink); }
+
+  .consent { display: grid; grid-template-columns: 1.1rem 1fr; gap: 0.7rem; align-items: start; color: var(--ink-soft); }
+  .consent input { width: 1.1rem; height: 1.1rem; margin: 0.2rem 0 0; accent-color: var(--ink); }
+  .consent span { font-size: 0.78rem; font-weight: 500; }
+  .contact-form .button { justify-self: start; margin-top: 0.5rem; }
+  .contact-form .button:disabled { cursor: not-allowed; opacity: 0.55; transform: none; }
+  .form-note { margin: 0; color: var(--ink-soft); font-size: 0.72rem; }
+  .form-status { min-height: 1.5em; margin: 0; font-size: 0.86rem; font-weight: 650; }
+  .form-status[data-state='success'] { color: #176f52; }
+  .form-status[data-state='error'] { color: #a52c2c; }
+  .setup-note { margin: 0; padding: 0.8rem 1rem; border-radius: 0.6rem; color: #5a4300; background: #fff5c7; font-size: 0.82rem; }
+  .cf-turnstile { min-height: 65px; }
+
+  .honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 880px) {
+    .contact-shell { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 520px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
+</style>

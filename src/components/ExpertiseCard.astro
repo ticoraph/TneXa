@@ -1,0 +1,125 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  href: string;
+  tags: string[];
+  accent?: 'lime' | 'mint';
+}
+
+const { number, title, description, href, tags, accent = 'lime' } = Astro.props;
+---
+
+<article class:list={['expertise-card', `expertise-card--${accent}`]}>
+  <div class="card-top">
+    <span>{number}</span>
+    <span class="card-arrow" aria-hidden="true">↗</span>
+  </div>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <ul aria-label="Domaines couverts">
+    {tags.map((tag) => <li>{tag}</li>)}
+  </ul>
+  <a href={href} aria-label={`Découvrir ${title}`}></a>
+</article>
+
+<style>
+  .expertise-card {
+    position: relative;
+    min-height: 31rem;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+
+  .expertise-card::after {
+    position: absolute;
+    right: -5rem;
+    bottom: -7rem;
+    width: 17rem;
+    height: 17rem;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.75;
+    filter: blur(1px);
+    content: '';
+    transition: transform 300ms ease;
+  }
+
+  .expertise-card--lime {
+    --accent: var(--lime);
+  }
+
+  .expertise-card--mint {
+    --accent: var(--mint);
+  }
+
+  .expertise-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-5px);
+  }
+
+  .expertise-card:hover::after {
+    transform: scale(1.12);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+    font-size: 0.85rem;
+    font-weight: 750;
+  }
+
+  .card-arrow {
+    display: grid;
+    width: 2.6rem;
+    height: 2.6rem;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+  }
+
+  h3 {
+    max-width: 11ch;
+    margin-bottom: 1.2rem;
+    font-size: clamp(2.1rem, 4vw, 4rem);
+  }
+
+  p {
+    max-width: 36rem;
+    color: var(--ink-soft);
+    font-size: 1.06rem;
+  }
+
+  ul {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 2.2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 254, 249, 0.7);
+    font-size: 0.76rem;
+    font-weight: 700;
+  }
+
+  a {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+  }
+</style>

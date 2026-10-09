@@ -1,0 +1,28 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const {
+  title,
+  description,
+  eyebrow = 'TneXa',
+  intro,
+  noindex = false,
+} = Astro.props.frontmatter;
+---
+
+<BaseLayout title={title} description={description} noindex={noindex}>
+  <header class="content-hero container">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    {intro && <p class="lede">{intro}</p>}
+  </header>
+  <div class="prose-wrap container">
+    <aside class="prose-nav" aria-label="Contexte de page">
+      <strong>{eyebrow}</strong>
+      <span>Expertise appliquée.<br />Résultats mesurables.</span>
+    </aside>
+    <article class="prose">
+      <slot />
+    </article>
+  </div>
+</BaseLayout>

@@ -1,0 +1,314 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ExpertiseCard from '../components/ExpertiseCard.astro';
+import MethodSteps from '../components/MethodSteps.astro';
+import ContactCta from '../components/ContactCta.astro';
+---
+
+<BaseLayout>
+  <section class="hero container">
+    <div class="hero-copy">
+      <p class="eyebrow">Intelligence artificielle appliquée</p>
+      <h1>Des systèmes IA qui passent à <em>l’action.</em></h1>
+      <p class="lede">TneXa conçoit des agents, des automatisations et des modèles connectés à vos données pour transformer vos opérations — avec des résultats mesurés dès le départ.</p>
+      <div class="hero-actions">
+        <a class="button" href="/contact">Parler de votre projet <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="#expertises">Découvrir nos expertises ↓</a>
+      </div>
+    </div>
+    <div class="system-visual" aria-label="De vos données à des décisions et actions mesurables">
+      <div class="orbit orbit--outer"></div>
+      <div class="orbit orbit--inner"></div>
+      <div class="core"><span>TneXa</span><small>AI systems</small></div>
+      <div class="node node--data"><span>01</span>Données</div>
+      <div class="node node--decide"><span>02</span>Décider</div>
+      <div class="node node--act"><span>03</span>Agir</div>
+      <div class="node node--measure"><span>04</span>Mesurer</div>
+    </div>
+  </section>
+
+  <section class="proof-strip" aria-label="Principes TneXa">
+    <div class="container proof-grid">
+      <div><strong>Utile</strong><span>Un besoin métier avant une technologie</span></div>
+      <div><strong>Mesurable</strong><span>Un critère de succès défini au cadrage</span></div>
+      <div><strong>Connecté</strong><span>À vos données et à vos outils existants</span></div>
+      <div><strong>Fiable</strong><span>Évalué, supervisé et suivi en production</span></div>
+    </div>
+  </section>
+
+  <section class="section container" id="expertises">
+    <SectionHeading
+      eyebrow="Nos expertises"
+      title="L’IA au service de vos opérations"
+      description="Nous réunissons conception produit, ingénierie IA et data pour livrer des systèmes qui s'intègrent réellement à votre organisation."
+    />
+    <div class="expertise-grid">
+      <ExpertiseCard
+        number="01 / 02"
+        title="Applications & agents IA"
+        description="Des agents spécialisés qui comprennent le contexte, utilisent les bons outils et accomplissent des tâches complètes sous contrôle."
+        href="/expertises/agents-ia"
+        tags={['Agents autonomes', 'Multi-agents', 'MCP', 'IA documentaire']}
+      />
+      <ExpertiseCard
+        number="02 / 02"
+        title="Data & machine learning"
+        description="Des modèles prédictifs et des pipelines de données conçus autour d'une décision métier et suivis dans la durée."
+        href="/expertises/data-machine-learning"
+        tags={['Prédiction', 'Optimisation', 'Computer vision', 'Data engineering']}
+        accent="mint"
+      />
+    </div>
+  </section>
+
+  <section class="dark-section">
+    <div class="container outcomes-grid">
+      <div class="outcomes-intro">
+        <p class="eyebrow">Du problème au résultat</p>
+        <h2>Pas de démonstrateur sans lendemain.</h2>
+      </div>
+      <div class="outcome-list">
+        <article>
+          <span>→</span>
+          <div><h3>Absorber davantage</h3><p>Automatiser les tâches répétitives et orchestrer les demandes sans dégrader la qualité.</p></div>
+        </article>
+        <article>
+          <span>→</span>
+          <div><h3>Décider plus tôt</h3><p>Transformer les historiques et signaux métier en prévisions, scores et recommandations.</p></div>
+        </article>
+        <article>
+          <span>→</span>
+          <div><h3>Fiabiliser les contrôles</h3><p>Détecter les anomalies, structurer les documents et rendre chaque résultat explicable.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="methode">
+    <SectionHeading
+      eyebrow="Notre méthode"
+      title="Construire, mesurer, améliorer"
+      description="Chaque projet commence par une décision ou un processus concret et se poursuit jusqu'au suivi en production."
+    />
+    <MethodSteps />
+  </section>
+
+  <section class="section--tight container">
+    <div class="manifesto surface">
+      <p class="eyebrow">Notre conviction</p>
+      <p class="manifesto-text">La valeur ne vient pas du modèle seul. Elle apparaît quand <mark>les données, les outils, les usages et la mesure</mark> forment un même système.</p>
+      <a class="text-link" href="/a-propos">Découvrir TneXa ↗</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <ContactCta />
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(24rem, 0.85fr);
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: center;
+    min-height: calc(100vh - 6rem);
+    padding-block: clamp(4rem, 8vw, 8rem);
+  }
+
+  .hero h1 {
+    max-width: 9ch;
+  }
+
+  .hero h1 em {
+    position: relative;
+    color: var(--ink);
+    font-style: normal;
+    white-space: nowrap;
+  }
+
+  .hero h1 em::after {
+    position: absolute;
+    z-index: -1;
+    right: -0.08em;
+    bottom: 0.02em;
+    left: -0.03em;
+    height: 0.25em;
+    border-radius: 999px;
+    background: var(--lime);
+    content: '';
+    transform: rotate(-1deg);
+  }
+
+  .hero .lede {
+    max-width: 41rem;
+    margin-top: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem 1.8rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .system-visual {
+    position: relative;
+    min-height: 36rem;
+    border: 1px solid var(--line);
+    border-radius: 50% 50% 2rem 2rem;
+    background:
+      radial-gradient(circle at center, rgba(223, 255, 99, 0.38), transparent 26%),
+      rgba(255, 254, 249, 0.58);
+    box-shadow: var(--shadow);
+  }
+
+  .orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px dashed rgba(7, 27, 24, 0.25);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .orbit--outer { width: 78%; height: 70%; }
+  .orbit--inner { width: 45%; height: 40%; }
+
+  .core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 8.5rem;
+    height: 8.5rem;
+    place-content: center;
+    border-radius: 50%;
+    color: var(--white);
+    background: var(--ink);
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+
+  .core span { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.04em; }
+  .core small { color: var(--mint); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .node {
+    position: absolute;
+    display: grid;
+    gap: 0.15rem;
+    min-width: 7.2rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    box-shadow: 0 12px 35px rgba(7, 27, 24, 0.11);
+    font-size: 0.85rem;
+    font-weight: 750;
+  }
+
+  .node span { color: #54756f; font-size: 0.62rem; letter-spacing: 0.1em; }
+  .node--data { top: 12%; left: 12%; }
+  .node--decide { top: 19%; right: 2%; }
+  .node--act { right: 10%; bottom: 13%; }
+  .node--measure { bottom: 18%; left: 3%; }
+
+  .proof-strip {
+    border-block: 1px solid var(--line);
+    background: rgba(255, 254, 249, 0.55);
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .proof-grid > div {
+    min-height: 8.5rem;
+    padding: 1.8rem 1.5rem;
+    border-right: 1px solid var(--line);
+  }
+
+  .proof-grid > div:first-child { border-left: 1px solid var(--line); }
+  .proof-grid strong { display: block; margin-bottom: 0.35rem; font-size: 1.05rem; }
+  .proof-grid span { color: var(--ink-soft); font-size: 0.85rem; line-height: 1.4; }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .dark-section {
+    padding-block: clamp(5rem, 10vw, 9rem);
+    color: var(--white);
+    background: var(--ink);
+  }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(3rem, 8vw, 9rem);
+  }
+
+  .dark-section .eyebrow { color: rgba(255, 255, 255, 0.66); }
+  .outcomes-intro { position: sticky; top: 2rem; align-self: start; }
+  .outcomes-intro h2 { max-width: 9ch; }
+  .outcome-list { border-top: 1px solid rgba(255, 255, 255, 0.2); }
+
+  .outcome-list article {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1.2rem;
+    padding: 2.2rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .outcome-list article > span { color: var(--lime); font-size: 1.5rem; }
+  .outcome-list h3 { margin-bottom: 0.55rem; }
+  .outcome-list p { margin: 0; color: rgba(255, 255, 255, 0.65); }
+
+  .manifesto {
+    padding: clamp(2rem, 5vw, 5rem);
+  }
+
+  .manifesto-text {
+    max-width: 24ch;
+    margin: 0 0 2rem;
+    font-size: clamp(2rem, 4.5vw, 4.4rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.1;
+  }
+
+  mark { color: inherit; background: linear-gradient(transparent 62%, var(--lime) 0); }
+
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .system-visual { min-height: 30rem; }
+    .proof-grid { grid-template-columns: 1fr 1fr; }
+    .proof-grid > div:nth-child(3) { border-left: 1px solid var(--line); }
+    .proof-grid > div { border-bottom: 1px solid var(--line); }
+  }
+
+  @media (max-width: 720px) {
+    .expertise-grid,
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .outcomes-intro { position: static; }
+  }
+
+  @media (max-width: 520px) {
+    .hero { padding-top: 3rem; }
+    .system-visual { min-height: 25rem; border-radius: var(--radius-lg); }
+    .node { min-width: 6rem; padding: 0.6rem; font-size: 0.75rem; }
+    .core { width: 7rem; height: 7rem; }
+    .proof-grid { grid-template-columns: 1fr; }
+    .proof-grid > div { border-left: 1px solid var(--line); }
+  }
+</style>

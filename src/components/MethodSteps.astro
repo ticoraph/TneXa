@@ -1,0 +1,72 @@
+---
+const steps = [
+  ['01', "Cadrer l'usage", 'Nous choisissons le processus à transformer et un indicateur de succès observable.'],
+  ['02', 'Concevoir le système', "Architecture, données, intégrations et périmètre d'action sont définis avant de développer."],
+  ['03', 'Tester sur le réel', 'Les modèles et approches sont comparés sur vos données, vos volumes et vos cas métier.'],
+  ['04', 'Intégrer aux outils', "Le système rejoint vos logiciels, API et habitudes de travail plutôt que d'exister à côté."],
+  ['05', 'Éprouver et sécuriser', 'Jeux de référence, tests adverses et validation humaine permettent de mesurer la qualité.'],
+  ['06', 'Mesurer et améliorer', 'Qualité, latence, coût et satisfaction sont suivis pour piloter chaque itération.'],
+];
+---
+
+<ol class="method-steps">
+  {steps.map(([number, title, description]) => (
+    <li>
+      <span class="step-number">{number}</span>
+      <div>
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .method-steps {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr);
+    gap: clamp(1rem, 4vw, 4rem);
+    align-items: start;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .step-number {
+    display: grid;
+    width: 3.1rem;
+    height: 3.1rem;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--ink);
+    background: var(--lime);
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  h3 {
+    margin-bottom: 0.55rem;
+  }
+
+  p {
+    max-width: 52rem;
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  @media (min-width: 760px) {
+    li {
+      grid-template-columns: 5rem minmax(14rem, 0.6fr) minmax(20rem, 1fr);
+    }
+
+    li > div {
+      display: contents;
+    }
+  }
+</style>
