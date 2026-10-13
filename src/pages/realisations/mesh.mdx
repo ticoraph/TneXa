@@ -1,0 +1,38 @@
+---
+layout: ../../layouts/CaseLayout.astro
+title: "Mesh"
+description: "Mesh est un catalogue d'applications léger (CMDB) qui référence la stack technique de chaque projet. Cas client TneXa."
+eyebrow: Réalisation
+status: Application privée
+intro: "Le catalogue de toutes vos applications."
+tags: [React, FastAPI, PostgreSQL, LangGraph, Cloud Run]
+back: { href: /realisations, label: Toutes les réalisations }
+---
+
+## Contexte
+
+Plusieurs sites et projets, chacun avec sa stack, son hébergement, ses dépôts. Difficile de s’y retrouver.
+
+## Problème
+
+Savoir ce qui tourne, où, et avec quoi. Sans y passer une journée.
+
+## Solution
+
+Un catalogue d’applications léger, une CMDB. Chaque projet y est référencé avec sa stack technique. Un agent IA (LangGraph), relié à GitHub, aide à le tenir à jour.
+
+## Architecture
+
+Interface React. API FastAPI. Base PostgreSQL. Agent LangGraph. Connexion Google avec Firebase Auth.
+
+## Déploiement
+
+Google Cloud Run. Infrastructure décrite en Terraform. Pas de load balancer : l’authentification est gérée par l’application.
+
+## Impact
+
+Une vue unique de toutes les applications et de leurs technologies.
+
+## Apprentissage
+
+Un catalogue utile reste léger. On y met ce qui répond à « qu’est-ce qui tourne où ? », et rien d’autre.

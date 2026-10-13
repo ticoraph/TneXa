@@ -1,0 +1,40 @@
+---
+layout: ../../layouts/CaseLayout.astro
+title: "Joule"
+description: "Joule suit et prévoit la consommation d'électricité d'un foyer avec plusieurs modèles de prévision comparés. Cas client TneXa."
+eyebrow: Réalisation
+status: Application privée
+intro: "Suivre et prévoir sa consommation d’électricité."
+tags: [React, FastAPI, XGBoost, Chronos, MLflow, Cloud Run]
+back: { href: /realisations, label: Toutes les réalisations }
+---
+
+## Contexte
+
+Un foyer produit et consomme de l’électricité de plusieurs sources : le compteur Enedis, la batterie et le solaire EcoFlow, la voiture Tesla.
+
+## Problème
+
+Les données sont éparpillées. Difficile de voir les tendances, les coûts, et de savoir ce qui arrive.
+
+## Solution
+
+Joule importe chaque jour consommation, index et puissance maximale. Il affiche des tableaux de bord par source, les coûts et le climat.
+
+Puis il prévoit : plusieurs modèles (Chronos2, TimesFM, XGBoost, Prophet) sont comparés sur des périodes passées, avec une bande d’incertitude. Un modèle de langage local (Qwen3-4B) rédige en français un rapport qui compare les modèles et signale les anomalies.
+
+## Architecture
+
+API FastAPI et base SQLite. Interface React avec des graphiques Recharts. Suivi des modèles avec MLflow. Connexion Google (Firebase Auth), limitée à une liste d’adresses.
+
+## Déploiement
+
+Google Cloud Run et Firebase Hosting. Infrastructure décrite en Terraform. API, MLflow et interface sont déployés par un workflow dédié.
+
+## Impact
+
+Un outil qui compare les modèles avec les mêmes mesures (MAE, RMSE, biais, MAPE), au lieu d’en choisir un à l’avance.
+
+## Apprentissage
+
+On ne choisit pas un modèle de prévision au feeling. On le mesure sur le passé, comme les autres.

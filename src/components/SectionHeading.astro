@@ -1,0 +1,44 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description?: string;
+}
+
+const { eyebrow, title, description } = Astro.props;
+---
+
+<div class="section-heading">
+  <div>
+    <p class="eyebrow">{eyebrow}</p>
+    <h2>{title}</h2>
+  </div>
+  {description && <p>{description}</p>}
+</div>
+
+<style>
+  .section-heading {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: clamp(1.5rem, 5vw, 3.5rem);
+  }
+
+  .section-heading h2 {
+    max-width: 14ch;
+  }
+
+  .section-heading > p {
+    max-width: 30rem;
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+  }
+
+  @media (min-width: 56rem) {
+    .section-heading {
+      grid-template-columns: minmax(0, 1.6fr) minmax(16rem, 0.7fr);
+      gap: 3rem;
+      align-items: end;
+    }
+  }
+</style>

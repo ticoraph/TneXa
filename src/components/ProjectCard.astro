@@ -1,0 +1,132 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  external?: boolean;
+  number?: string;
+  tag?: string;
+  accent?: 'lime' | 'mint';
+}
+
+const { title, description, href, number, tag, external = false, accent = 'lime' } = Astro.props;
+---
+
+<article class:list={['project-card', `project-card--${accent}`]}>
+  <div class="card-top">
+    <span>{number}</span>
+    {tag && <span class="card-tag">{tag}</span>}
+    <span class="card-arrow" aria-hidden="true">↗</span>
+  </div>
+  <h3><a href={href} rel={external ? 'noopener' : undefined}>{title}</a></h3>
+  <p>{description}</p>
+</article>
+
+<style>
+  .project-card {
+    position: relative;
+    display: flex;
+    min-height: 12rem;
+    flex-direction: column;
+    padding: 1.25rem;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+
+  .project-card::after {
+    position: absolute;
+    right: -3.5rem;
+    bottom: -4.5rem;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.75;
+    content: '';
+    transition: transform 300ms ease;
+  }
+
+  .project-card--lime { --accent: var(--lime); }
+  .project-card--mint { --accent: var(--mint); }
+
+  .project-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-4px);
+  }
+
+  .project-card:hover::after {
+    transform: scale(1.12);
+  }
+
+  .card-top {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 750;
+  }
+
+  .card-tag {
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: var(--paper-deep);
+    font-size: 0.75rem;
+  }
+
+  .card-arrow {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: auto;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+  }
+
+  h3 {
+    margin-bottom: 0.6rem;
+    font-size: clamp(1.4rem, 1.1rem + 1.7vw, 2.2rem);
+  }
+
+  /* Toute la carte est cliquable, avec un seul lien pour les lecteurs d'écran. */
+  h3 a {
+    text-decoration: none;
+  }
+
+  h3 a::before {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    content: '';
+  }
+
+  p {
+    position: relative;
+    z-index: 1;
+    max-width: 30rem;
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  @media (min-width: 56rem) {
+    .project-card {
+      min-height: 18rem;
+      padding: 1.75rem;
+    }
+
+    .project-card::after {
+      right: -5rem;
+      bottom: -7rem;
+      width: 14rem;
+      height: 14rem;
+    }
+
+    .card-top {
+      margin-bottom: 3rem;
+    }
+  }
+</style>

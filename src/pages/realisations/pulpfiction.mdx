@@ -1,0 +1,39 @@
+---
+layout: ../../layouts/CaseLayout.astro
+title: "PulpFiction.fr"
+description: "PulpFiction.fr présente une collection d'objets Pulp Fiction avec liens partenaires. Cas client TneXa : site rapide, administration sécurisée."
+eyebrow: Réalisation
+intro: "Une collection d’objets Pulp Fiction à parcourir en ligne."
+tags: [React, FastAPI, PostgreSQL, Cloudflare, AWS]
+url: https://pulpfiction.fr
+urlLabel: Voir pulpfiction.fr
+back: { href: /realisations, label: Toutes les réalisations }
+---
+
+## Contexte
+
+Un collectionneur. Des objets rares. Des liens partenaires. Un catalogue à montrer et à tenir à jour.
+
+## Problème
+
+Un site public rapide sur tous les écrans, et une administration simple, sans comptes utilisateurs à gérer.
+
+## Solution
+
+Une galerie lisible dès 360 px. Un seul administrateur gère le catalogue : créer, modifier, masquer, réordonner. Depuis une page cachée.
+
+## Architecture
+
+React, FastAPI, PostgreSQL. L’administration est protégée par Cloudflare Access, avec un code envoyé par e-mail. Les écritures de l’API exigent un secret ajouté par une Worker Cloudflare.
+
+## Déploiement
+
+Application sur S3 et CloudFront. API en conteneur sur AWS App Runner. Le tout derrière Cloudflare.
+
+## Impact
+
+Un site léger, sans compte public : aucun mot de passe à protéger. Un catalogue mis à jour depuis un tableau de bord.
+
+## Apprentissage
+
+Le plus sûr est souvent le plus simple. Pas de comptes publics, et un accès administrateur confié à Cloudflare Access.

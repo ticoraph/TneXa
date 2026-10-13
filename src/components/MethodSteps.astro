@@ -1,0 +1,80 @@
+---
+const steps = [
+  ['01', 'Cadrer', 'Un besoin concret. Un indicateur de succès.'],
+  ['02', 'Prototyper', 'Un premier système, testé sur vos vraies données.'],
+  ['03', 'Intégrer', 'Branché à vos outils, pas à côté.'],
+  ['04', 'Mesurer', 'Qualité, coût, délai : suivis en production.'],
+];
+---
+
+<ol class="method-steps">
+  {steps.map(([number, title, description]) => (
+    <li>
+      <span class="step-number">{number}</span>
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .method-steps {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    column-gap: 1rem;
+    align-items: center;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .step-number {
+    display: grid;
+    grid-row: span 2;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--lime);
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    margin: 0.2rem 0 0;
+    color: var(--ink-soft);
+  }
+
+  @media (min-width: 56rem) {
+    .method-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      border-top: 0;
+    }
+
+    li {
+      grid-template-columns: 1fr;
+      row-gap: 0.5rem;
+      align-content: start;
+      padding: 1.5rem 0 0;
+      border-top: 1px solid var(--ink);
+      border-bottom: 0;
+    }
+
+    .step-number {
+      grid-row: auto;
+      margin-bottom: 1rem;
+    }
+  }
+</style>

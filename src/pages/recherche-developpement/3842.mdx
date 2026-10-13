@@ -1,0 +1,38 @@
+---
+layout: ../../layouts/CaseLayout.astro
+title: "Projet 3842"
+description: "Projet R&D de TneXa : déterminer s'il neige et la hauteur de neige à partir d'images de webcams de montagne."
+eyebrow: R&D
+status: En conception
+intro: "Lire la neige sur les webcams de montagne."
+tags: [Vision par ordinateur, Image vers texte, SkiPri]
+back: { href: /recherche-developpement, label: Tous les projets R&D }
+---
+
+## Contexte
+
+Notre base SkiPri recense 771 webcams de stations. 353 donnent un lien direct vers leur dernière image. Elles montrent la neige, mais personne ne la lit.
+
+## Problème
+
+Deux questions, deux rythmes. S’il neige en ce moment : cela change d’heure en heure. La hauteur de neige au sol : cela varie sur plusieurs jours.
+
+## Solution
+
+Une analyse d’image (image vers texte) qui répond aux deux questions à partir d’une capture par heure. Le résultat est un indice visuel, jamais une mesure officielle.
+
+## Architecture
+
+Capture horaire → tri jour/nuit et qualité de l’image → analyse → étiquette, score, heure. L’image est supprimée juste après.
+
+## Déploiement
+
+Pas encore. Le projet est en conception : rien n’est construit. Les droits des images sont à régler avant toute collecte.
+
+## Impact
+
+Attendu : compléter les données en direct de SkiPri avec un signal visuel, sur la neige en cours et sur l’enneigement.
+
+## Apprentissage
+
+Les images appartiennent à leurs fournisseurs : on garde le résultat, pas l’image. Et on ne déduit jamais l’ouverture d’une station d’une simple photo.

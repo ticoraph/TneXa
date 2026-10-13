@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getNavItem } from '../../config';
+
+const { children = [] } = getNavItem('/realisations');
+---
+
+<BaseLayout
+  title="Réalisations"
+  description="SkiPri, SurPri, PulpFiction, Joule, Mesh : les produits construits de bout en bout par TneXa, des données au déploiement."
+>
+  <header class="content-hero container">
+    <p class="eyebrow">Réalisations</p>
+    <h1>Du concret. En ligne.</h1>
+    <p class="lede">Cinq produits construits de bout en bout : données, IA, application, déploiement.</p>
+  </header>
+
+  <section class="container" aria-label="Nos réalisations">
+    <ul class="card-grid card-grid--3">
+      {children.map((item, index) => (
+        <li>
+          <ProjectCard number={`0${index + 1}`} title={item.label} description={item.description} href={item.url ?? item.href} external={Boolean(item.url)} accent={index % 2 === 0 ? 'lime' : 'mint'} />
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

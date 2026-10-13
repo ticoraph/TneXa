@@ -1,0 +1,39 @@
+---
+layout: ../../layouts/CaseLayout.astro
+title: "SkiPri.fr"
+description: "SkiPri compare les tarifs de forfaits de ski des stations françaises. Cas client TneXa : pipeline de données, API, application web."
+eyebrow: Réalisation
+intro: "Comparer les forfaits de ski de toutes les stations françaises."
+tags: [Next.js, FastAPI, PostgreSQL, Dagster, AWS]
+url: https://skipri.fr
+urlLabel: Voir skipri.fr
+back: { href: /realisations, label: Toutes les réalisations }
+---
+
+## Contexte
+
+Chaque station et chaque revendeur publient leurs tarifs à leur façon. Pas deux sites qui parlent le même langage.
+
+## Problème
+
+Comparer deux forfaits, c’est comparer des conditions : âge, durée, périmètre, frais de groupe. Un prix seul ne dit pas tout.
+
+## Solution
+
+SkiPri rassemble prix et caractéristiques des stations, les normalise et les compare avec leurs conditions. Quand une condition est incertaine, le site le dit. Aucun prix n’est garanti.
+
+## Architecture
+
+Collecte (scrapers Python) → pipeline Dagster (brut, observations, valeurs retenues, contrôles qualité) → API FastAPI → PostgreSQL → application Next.js statique. Compte utilisateur avec AWS Cognito.
+
+## Déploiement
+
+Application sur S3 et CloudFront. API en conteneur sur AWS App Runner. Base de données AWS RDS. Déploiements automatiques avec GitHub Actions.
+
+## Impact
+
+Un comparateur qui couvre prix, domaines, webcams, avis et enneigement. Un espace personnel avec favoris, cartes, export et suppression des données.
+
+## Apprentissage
+
+Le plus dur n’est pas de collecter, c’est de réconcilier : une même station porte plusieurs noms selon les sources. Et mieux vaut afficher un doute qu’une fausse certitude.

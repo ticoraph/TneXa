@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getNavItem } from '../../config';
+
+const { children = [] } = getNavItem('/recherche-developpement');
+---
+
+<BaseLayout
+  title="Recherche & Développement"
+  description="Les projets de recherche de TneXa : lecture de la neige sur webcam, personnages de film conversationnels, agents et paiements programmables, robot de compagnie."
+>
+  <header class="content-hero container">
+    <p class="eyebrow">Recherche &amp; Développement</p>
+    <h1>On explore. Vous en profitez.</h1>
+    <p class="lede">Quatre projets menés en interne. Ils nourrissent nos missions.</p>
+  </header>
+
+  <section class="container" aria-label="Projets de recherche">
+    <ul class="card-grid">
+      {children.map((item, index) => (
+        <li>
+          <ProjectCard number={`0${index + 1}`} title={item.label} description={item.description} href={item.href} tag={item.tag} accent={index % 2 === 0 ? 'mint' : 'lime'} />
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

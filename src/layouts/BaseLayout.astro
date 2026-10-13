@@ -1,0 +1,157 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = siteConfig.description,
+} = Astro.props;
+const pageTitle = title ? `${title} — ${siteConfig.name}` : `${siteConfig.name} — Systèmes IA utiles, mesurables et fiables`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const currentPath = Astro.url.pathname;
+const footerGroups = siteConfig.navigation.filter((item) => item.children && item.href !== '/produits');
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#071b18" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, noai, noimageai" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta name="twitter:card" content="summary" />
+    <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: Astro.site,
+      email: siteConfig.email,
+    })} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <header class="site-header">
+      <div class="container">
+        <div class="nav-shell">
+          <a class="brand" href="/" aria-label="TneXa, accueil">
+            <span class="brand-mark" aria-hidden="true"></span>
+            TneXa
+          </a>
+          <nav class="desktop-nav" aria-label="Navigation principale">
+            {siteConfig.navigation.map((item) => item.children ? (
+              <div class="nav-group">
+                <a class:list={['nav-parent', { 'is-active': currentPath.startsWith(item.href) }]} href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>
+                  {item.label}<span aria-hidden="true">⌄</span>
+                </a>
+                <div class="nav-dropdown">
+                  <a class="dropdown-overview" href={item.href}>{item.label} <span aria-hidden="true">↗</span></a>
+                  {item.children.map((child) => (
+                    <a class:list={['dropdown-item', { 'dropdown-item--product': child.product }]} href={child.href}>
+                      <strong>{child.label}</strong>
+                      <span>{child.description}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
+            ))}
+          </nav>
+          <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-navigation">
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <nav class="mobile-nav" id="mobile-navigation" aria-label="Navigation mobile" data-open="false">
+        {siteConfig.navigation.map((item) => item.children ? (
+          <details>
+            <summary>{item.label}</summary>
+            <div class="mobile-nav-links">
+              <a href={item.href}>Tout voir</a>
+              {item.children.map((child) => <a href={child.href}>{child.label}</a>)}
+            </div>
+          </details>
+        ) : <a href={item.href}>{item.label}</a>)}
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <a class="brand footer-brand" href="/">
+              <span class="brand-mark" aria-hidden="true"></span>
+              TneXa
+            </a>
+            <p class="footer-statement">L’IA qui passe à l’action. Connectée à vos données.</p>
+          </div>
+          {footerGroups.map((group) => (
+            <div>
+              <p class="footer-heading">{group.label}</p>
+              <nav class="footer-links" aria-label={group.label}>
+                {group.children?.map((child) => <a href={child.href}>{child.label}</a>)}
+              </nav>
+            </div>
+          ))}
+          <div>
+            <p class="footer-heading">Contact</p>
+            <div class="footer-links">
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© {new Date().getFullYear()} TneXa. Tous droits réservés.</span>
+          <span><a href="/mentions-legales">Mentions légales</a> · <a href="/confidentialite">Confidentialité</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+      const mobileNav = document.querySelector<HTMLElement>('.mobile-nav');
+      const desktop = window.matchMedia('(min-width: 64rem)');
+
+      function setMenu(open: boolean) {
+        if (!toggle || !mobileNav) return;
+        mobileNav.setAttribute('data-open', String(open));
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+        document.body.classList.toggle('menu-open', open);
+      }
+
+      toggle?.addEventListener('click', () => setMenu(mobileNav?.getAttribute('data-open') !== 'true'));
+      mobileNav?.addEventListener('click', (event) => {
+        if ((event.target as HTMLElement).closest('a')) setMenu(false);
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && mobileNav?.getAttribute('data-open') === 'true') {
+          setMenu(false);
+          toggle?.focus();
+        }
+      });
+      desktop.addEventListener('change', (event) => {
+        if (event.matches) setMenu(false);
+      });
+    </script>
+  </body>
+</html>

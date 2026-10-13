@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page introuvable">
+  <section class="not-found container">
+    <p class="eyebrow">Erreur 404</p>
+    <h1>Cette page n’existe pas.</h1>
+    <p class="lede">Le lien est ancien ou l’adresse incomplète. Revenez à l’accueil.</p>
+    <a class="button" href="/">Retour à l’accueil</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found { min-height: 60svh; padding-block: clamp(3rem, 12vw, 10rem); }
+  h1 { max-width: 10ch; }
+  .lede { margin: 1.25rem 0 1.75rem; }
+</style>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Produits"
+  description="TneGa, la plateforme d'agents IA de TneXa, installée dans votre environnement."
+>
+  <header class="content-hero container">
+    <p class="eyebrow">Produits</p>
+    <h1>Notre savoir-faire, en produit.</h1>
+    <p class="lede">Ce que nous répétons chez nos clients devient un outil que vous gardez.</p>
+  </header>
+
+  <section class="container" aria-label="Produits TneXa">
+    <a class="product-card" href="/produits/tnega">
+      <p class="eyebrow">Produit 01</p>
+      <p class="words" aria-label="aGenT à l’envers donne TneGa">
+        <span class="agent-word">aGenT</span>
+        <span class="arrow" aria-hidden="true">←</span>
+        <strong>TneGa</strong>
+      </p>
+      <h2>Vos agents IA. Chez vous.</h2>
+      <p>Une plateforme installée dans votre environnement, indépendante des modèles.</p>
+      <span class="more">Découvrir TneGa <span aria-hidden="true">↗</span></span>
+    </a>
+  </section>
+</BaseLayout>
+
+<style>
+  .product-card {
+    display: block;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    color: var(--white);
+    background: radial-gradient(circle at 80% 20%, rgba(93, 224, 193, 0.4), transparent 14rem), var(--ink);
+    text-decoration: none;
+  }
+
+  .product-card:focus-visible { outline-color: var(--lime); }
+  .product-card .eyebrow { color: rgba(255, 255, 255, 0.7); }
+
+  .words {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: baseline;
+    margin: 1.5rem 0;
+    font-size: clamp(2.6rem, 1.8rem + 7.6vw, 6.8rem);
+    font-weight: 800;
+    letter-spacing: -0.07em;
+    line-height: 0.9;
+  }
+
+  .agent-word { color: rgba(255, 255, 255, 0.3); text-decoration: line-through; text-decoration-color: var(--mint); text-decoration-thickness: 0.05em; }
+  .arrow { color: var(--mint); font-size: 0.45em; letter-spacing: normal; }
+  .words strong { color: var(--lime); }
+  h2 { max-width: 12ch; margin-bottom: 0.8rem; }
+  p:not(.eyebrow):not(.words) { max-width: 32rem; color: rgba(255, 255, 255, 0.7); }
+  .more { display: inline-flex; gap: 0.5rem; align-items: center; min-height: 2.75rem; color: var(--lime); font-weight: 750; }
+
+  @media (min-width: 56rem) {
+    .product-card { padding: 3rem; }
+  }
+</style>

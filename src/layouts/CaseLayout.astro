@@ -1,0 +1,74 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+// Gabarit commun des fiches Réalisations et R&D.
+// Le corps MDX suit le plan : Contexte, Problème, Solution, Architecture, Déploiement, Impact, Apprentissage.
+const {
+  title,
+  description,
+  eyebrow = 'Réalisation',
+  intro,
+  tags = [],
+  status,
+  url,
+  urlLabel,
+  back,
+} = Astro.props.frontmatter;
+---
+
+<BaseLayout title={title} description={description}>
+  <header class="content-hero container">
+    <p class="eyebrow">{eyebrow}{status && ` · ${status}`}</p>
+    <h1>{title}</h1>
+    {intro && <p class="lede">{intro}</p>}
+    {tags.length > 0 && (
+      <ul class="chips" aria-label="Technologies">
+        {tags.map((tag: string) => <li>{tag}</li>)}
+      </ul>
+    )}
+    {url && (
+      <div class="hero-actions">
+        <a class="button" href={url} rel="noopener">{urlLabel ?? 'Voir le site'} <span aria-hidden="true">↗</span></a>
+      </div>
+    )}
+  </header>
+  <div class="prose-wrap container">
+    <article class="prose case-prose">
+      <slot />
+    </article>
+    {back && <p class="back"><a class="text-link" href={back.href}>← {back.label}</a></p>}
+  </div>
+</BaseLayout>
+
+<style>
+  .content-hero .chips {
+    margin-top: 1.5rem;
+  }
+
+  .back {
+    margin: 2rem 0 0;
+  }
+
+  /* Un titre de rubrique par bloc, numéroté pour guider la lecture sur mobile. */
+  .case-prose {
+    counter-reset: rubrique;
+  }
+
+  .case-prose :global(h2) {
+    counter-increment: rubrique;
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: clamp(1.35rem, 1.1rem + 1.3vw, 1.9rem);
+  }
+
+  .case-prose :global(h2)::before {
+    color: #4d6d67;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    content: '0' counter(rubrique);
+  }
+</style>
