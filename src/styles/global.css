@@ -765,7 +765,7 @@ p {
 
   .nav-dropdown {
     position: absolute;
-    top: calc(100% + 0.25rem);
+    top: 100%;
     left: 50%;
     display: grid;
     width: 23rem;
@@ -778,7 +778,8 @@ p {
     visibility: hidden;
     transform: translate(-50%, -0.45rem);
     pointer-events: none;
-    transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+    /* Délai à la fermeture : laisse le temps d'atteindre un lien sans quitter le menu. */
+    transition: opacity 160ms ease 200ms, transform 160ms ease 200ms, visibility 0s linear 360ms;
   }
 
   .nav-group:hover .nav-dropdown,
@@ -787,6 +788,7 @@ p {
     visibility: visible;
     transform: translate(-50%, 0);
     pointer-events: auto;
+    transition-delay: 0s;
   }
 
   .nav-group:hover .nav-parent > span,
