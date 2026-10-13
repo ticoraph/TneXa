@@ -5,34 +5,13 @@ description: "Mesh est un catalogue d'applications léger (CMDB) qui référence
 eyebrow: Réalisation
 status: Application privée
 intro: "Le catalogue de toutes vos applications."
-tags: [React, FastAPI, PostgreSQL, LangGraph, Cloud Run]
+facts:
+  - { label: Type, value: "Catalogue d’applications (CMDB)" }
+  - { label: Application, value: "Interface React, API FastAPI, PostgreSQL" }
+  - { label: Agent IA, value: "LangGraph, relié à GitHub, pour tenir le catalogue à jour" }
+  - { label: Accès, value: "Connexion Google (Firebase Auth), sans load balancer" }
+  - { label: Hébergement, value: "Cloud Run, Terraform" }
 back: { href: /realisations, label: Toutes les réalisations }
 ---
 
-## Contexte
-
-Plusieurs sites et projets, chacun avec sa stack, son hébergement, ses dépôts. Difficile de s’y retrouver.
-
-## Problème
-
-Savoir ce qui tourne, où, et avec quoi. Sans y passer une journée.
-
-## Solution
-
-Un catalogue d’applications léger, une CMDB. Chaque projet y est référencé avec sa stack technique. Un agent IA (LangGraph), relié à GitHub, aide à le tenir à jour.
-
-## Architecture
-
-Interface React. API FastAPI. Base PostgreSQL. Agent LangGraph. Connexion Google avec Firebase Auth.
-
-## Déploiement
-
-Google Cloud Run. Infrastructure décrite en Terraform. Pas de load balancer : l’authentification est gérée par l’application.
-
-## Impact
-
-Une vue unique de toutes les applications et de leurs technologies.
-
-## Apprentissage
-
-Un catalogue utile reste léger. On y met ce qui répond à « qu’est-ce qui tourne où ? », et rien d’autre.
+Plusieurs sites et projets, chacun avec sa stack, son hébergement et ses dépôts : difficile de s’y retrouver. Mesh est un catalogue d’applications léger, une CMDB, où chaque projet est référencé avec sa stack technique. Un agent IA relié à GitHub aide à le tenir à jour. Le résultat est une vue unique de ce qui tourne, où, et avec quoi, sans y passer une journée. Un catalogue utile reste léger : il ne contient que ce qui répond à « qu’est-ce qui tourne où ? », et rien d’autre.

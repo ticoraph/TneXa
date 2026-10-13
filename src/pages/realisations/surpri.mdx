@@ -4,38 +4,16 @@ title: "SurPri.fr"
 description: "SurPri aide à choisir une voiture électrique avec des agents IA qui chiffrent le coût réel sur 5 ans. Cas client TneXa."
 eyebrow: Réalisation
 intro: "Choisir sa voiture électrique avec des agents IA."
-tags: [Next.js, FastAPI, CrewAI, Modal, Supabase]
-url: https://surpri.fr
+site: https://surpri.fr
 urlLabel: Voir surpri.fr
+facts:
+  - { label: Application, value: "Next.js sur Vercel" }
+  - { label: API, value: "FastAPI sur Modal" }
+  - { label: Agents, value: "CrewAI : chercher, évaluer, superviser, classer, contester, conseiller" }
+  - { label: Données, value: "Supabase (base et connexion)" }
+  - { label: Veille, value: "Prix suivis chaque jour, alertes Telegram" }
+  - { label: Résultat, value: "40 critères sur 40 vérifiés, 11 à 16 secondes par analyse" }
 back: { href: /realisations, label: Toutes les réalisations }
 ---
 
-## Contexte
-
-Acheter une voiture électrique neuve en France, c’est jongler avec les aides, l’autonomie réelle et le coût sur 5 ans.
-
-## Problème
-
-Un modèle de langage seul invente des chiffres. Ici, un chiffre faux coûte cher.
-
-## Solution
-
-Vous décrivez votre usage. Des agents cherchent les modèles compatibles, chiffrent le coût réel avec l’aide à l’achat, débattent du podium et rédigent une note d’achat sourcée.
-
-Les calculs sont faits par du code, pas par le modèle. Les agents commentent un classement figé.
-
-## Architecture
-
-Application Next.js. API FastAPI. Un flow multi-agents CrewAI au squelette fixe : chercher, évaluer, superviser, classer, contester, conseiller. Reprise après plantage. Chaque valeur est marquée « fait » ou « hypothèse ».
-
-## Déploiement
-
-Application sur Vercel. API et analyses sur Modal. Base de données et connexion avec Supabase. Veille quotidienne des prix, avec alertes Telegram.
-
-## Impact
-
-40 critères sur 40 vérifiés sur des profils réels. Entre 11 et 16 secondes par analyse.
-
-## Apprentissage
-
-Laisser le code calculer et l’IA expliquer. Un superviseur piloté par un modèle a été testé, puis écarté : aucun gain mesuré.
+Acheter une voiture électrique neuve en France, c’est jongler avec les aides, l’autonomie réelle et le coût sur 5 ans. Vous décrivez votre usage ; des agents cherchent les modèles compatibles, chiffrent le coût réel avec l’aide à l’achat, débattent du podium et rédigent une note d’achat sourcée. Un modèle de langage seul invente des chiffres : ici, les calculs sont faits par du code, et les agents commentent un classement figé. Chaque valeur est marquée « fait » ou « hypothèse », et l’analyse reprend après un plantage. Un superviseur piloté par un modèle a été testé puis écarté, faute de gain mesuré.

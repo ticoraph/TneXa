@@ -12,12 +12,12 @@ const { children = [] } = getNavItem('/recherche-developpement');
 >
   <header class="content-hero container">
     <p class="eyebrow">Recherche &amp; Développement</p>
-    <h1>On explore. Vous en profitez.</h1>
-    <p class="lede">Quatre projets menés en interne. Ils nourrissent nos missions.</p>
+    <h1>J’explore. Vous en profitez.</h1>
+    <p class="lede">Quatre projets menés en interne. Ils nourrissent mes missions.</p>
   </header>
 
   <section class="container" aria-label="Projets de recherche">
-    <ul class="card-grid">
+    <ul class="card-grid card-grid--4">
       {children.map((item, index) => (
         <li>
           <ProjectCard number={`0${index + 1}`} title={item.label} description={item.description} href={item.href} tag={item.tag} accent={index % 2 === 0 ? 'mint' : 'lime'} />

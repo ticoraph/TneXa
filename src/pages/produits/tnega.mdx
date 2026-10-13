@@ -1,0 +1,19 @@
+---
+layout: ../../layouts/CaseLayout.astro
+title: "TneGa"
+description: "TneGa est la plateforme IA de TneXa : recherche documentaire, agents et serveur MCP, auto-hébergés sur un serveur dédié, sans cloud public."
+eyebrow: Produit
+intro: "Une plateforme IA auto-hébergée, de bout en bout."
+site: https://tnega.tech
+urlLabel: Voir tnega.tech
+facts:
+  - { label: Modèles, value: "Passerelle unique LiteLLM : Mistral, Gemini, Ollama en local, TEI pour les embeddings" }
+  - { label: Applications, value: "Open WebUI, API FastAPI (RAG, agents LangGraph), serveur MCP" }
+  - { label: Données, value: "Dagster, Qdrant, MLflow, n8n" }
+  - { label: Observabilité, value: "Grafana, Loki, Prometheus, Langfuse" }
+  - { label: Déploiement, value: "Docker Compose piloté par Dokploy, sur un VPS dédié, sans Kubernetes" }
+  - { label: Sécurité, value: "HTTPS via Traefik, chaque service derrière sa propre authentification" }
+back: { href: /produits, label: Tous les produits }
+---
+
+TneGa rassemble sur un même serveur les outils pour construire, servir et surveiller des applications d’IA : recherche dans vos documents (RAG), agents, serveur MCP, pipelines de données et suivi des expériences. La plateforme évite le cloud public et Kubernetes. Elle passe par une seule porte vers les modèles, ce qui permet d’en changer sans tout reconstruire. Chaque appel est tracé, et les agents n’utilisent vos outils qu’avec les droits que vous fixez. Selon vos contraintes, les modèles sont externes (privé hybride) ou 100 % locaux, sur votre GPU ou un GPU privé.

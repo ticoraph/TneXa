@@ -4,36 +4,15 @@ title: "PulpFiction.fr"
 description: "PulpFiction.fr présente une collection d'objets Pulp Fiction avec liens partenaires. Cas client TneXa : site rapide, administration sécurisée."
 eyebrow: Réalisation
 intro: "Une collection d’objets Pulp Fiction à parcourir en ligne."
-tags: [React, FastAPI, PostgreSQL, Cloudflare, AWS]
-url: https://pulpfiction.fr
+site: https://pulpfiction.fr
 urlLabel: Voir pulpfiction.fr
+facts:
+  - { label: Technologies, value: "React, FastAPI, PostgreSQL" }
+  - { label: Administration, value: "Page cachée, protégée par Cloudflare Access (code par e-mail)" }
+  - { label: Sécurité, value: "Écritures de l’API protégées par un secret ajouté par une Worker Cloudflare" }
+  - { label: Hébergement, value: "S3 et CloudFront, App Runner, derrière Cloudflare" }
+  - { label: Comptes publics, value: "Aucun" }
 back: { href: /realisations, label: Toutes les réalisations }
 ---
 
-## Contexte
-
-Un collectionneur. Des objets rares. Des liens partenaires. Un catalogue à montrer et à tenir à jour.
-
-## Problème
-
-Un site public rapide sur tous les écrans, et une administration simple, sans comptes utilisateurs à gérer.
-
-## Solution
-
-Une galerie lisible dès 360 px. Un seul administrateur gère le catalogue : créer, modifier, masquer, réordonner. Depuis une page cachée.
-
-## Architecture
-
-React, FastAPI, PostgreSQL. L’administration est protégée par Cloudflare Access, avec un code envoyé par e-mail. Les écritures de l’API exigent un secret ajouté par une Worker Cloudflare.
-
-## Déploiement
-
-Application sur S3 et CloudFront. API en conteneur sur AWS App Runner. Le tout derrière Cloudflare.
-
-## Impact
-
-Un site léger, sans compte public : aucun mot de passe à protéger. Un catalogue mis à jour depuis un tableau de bord.
-
-## Apprentissage
-
-Le plus sûr est souvent le plus simple. Pas de comptes publics, et un accès administrateur confié à Cloudflare Access.
+Un collectionneur, des objets rares, des liens partenaires : PulpFiction.fr est un catalogue à montrer et à tenir à jour. La galerie est lisible dès 360 px. Un seul administrateur gère le catalogue (créer, modifier, masquer, réordonner) depuis une page cachée, sans compte utilisateur à gérer. Le site public est léger et ne demande aucun mot de passe, et l’accès administrateur est confié à Cloudflare Access : le plus sûr est souvent le plus simple.

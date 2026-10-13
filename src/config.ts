@@ -5,14 +5,14 @@ export interface NavChild {
   /** Mention courte affichée sur la fiche, par exemple l'état d'avancement. */
   tag?: string;
   product?: boolean;
-  /** Site externe du projet : les cartes de la liste des réalisations y mènent directement. */
-  url?: string;
 }
 
 export interface NavItem {
   label: string;
   href: string;
   description?: string;
+  /** Libellé du lien vers la fiche suivante, en bas des fiches de la rubrique. */
+  nextLabel?: string;
   children?: NavChild[];
 }
 
@@ -26,23 +26,21 @@ export const siteConfig = {
       label: 'Réalisations',
       href: '/realisations',
       description: 'Des produits construits de bout en bout, déjà en ligne.',
+      nextLabel: 'Réalisation suivante',
       children: [
         {
           label: 'SkiPri.fr',
           href: '/realisations/skipri',
-          url: 'https://skipri.fr',
           description: 'Comparer les forfaits de ski de toutes les stations.',
         },
         {
           label: 'SurPri.fr',
           href: '/realisations/surpri',
-          url: 'https://surpri.fr',
           description: 'Choisir sa voiture électrique avec des agents IA.',
         },
         {
           label: 'PulpFiction.fr',
           href: '/realisations/pulpfiction',
-          url: 'https://pulpfiction.fr',
           description: 'La collection Pulp Fiction, en ligne.',
         },
         {
@@ -60,7 +58,7 @@ export const siteConfig = {
     {
       label: 'Produits',
       href: '/produits',
-      description: 'Nos savoir-faire, packagés en produits.',
+      description: 'Un savoir-faire, packagé en produits.',
       children: [
         {
           label: 'Plateforme IA TneGa',
@@ -73,7 +71,8 @@ export const siteConfig = {
     {
       label: 'Recherche & Développement',
       href: '/recherche-developpement',
-      description: 'Ce que nous explorons aujourd’hui pour livrer demain.',
+      description: 'Ce que j’explore aujourd’hui pour livrer demain.',
+      nextLabel: 'Projet suivant',
       children: [
         {
           label: 'Projet 3842',

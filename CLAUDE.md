@@ -29,6 +29,7 @@ Avant de considérer une modification terminée : `npm run check` doit passer ; 
 - Les décisions (les nôtres et celles de Raphaël) sont notées dans `docs/DECISIONS.md`. Ajouter une ligne à chaque choix qui engage la suite.
 - `docs/SOMMAIRE.md` est la référence de la structure et du contenu du site.
 - Textes et commentaires en français, avec les accents et la typographie française (guillemets « », espaces avant `:`, `;`, `?`, `!`). Phrases courtes, ton concret, sans jargon inutile.
+- Voix du site : jamais « nous », « on », « notre » ni « nos » (TneXa est un projet individuel). Écrire à la première personne du singulier (« je », « mes ») ou de façon neutre, et s'adresser au visiteur avec « vous ».
 - Pas de barre oblique finale dans les URL (`trailingSlash: 'never'`) : écrire `/realisations`, pas `/realisations/`.
 - Le contenu éditorial reste dans les `.mdx` ; la mise en forme reste dans les composants et `global.css`.
 - Mobile First : le CSS de base vise 360 px, les écrans larges s'ajoutent avec `@media (min-width: …)`. Pas de `max-width` dans les médias.

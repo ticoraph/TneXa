@@ -16,11 +16,11 @@ const { children = [] } = getNavItem('/realisations');
     <p class="lede">Cinq produits construits de bout en bout : données, IA, application, déploiement.</p>
   </header>
 
-  <section class="container" aria-label="Nos réalisations">
-    <ul class="card-grid card-grid--3">
+  <section class="container" aria-label="Réalisations">
+    <ul class="card-grid card-grid--3 card-grid--5">
       {children.map((item, index) => (
         <li>
-          <ProjectCard number={`0${index + 1}`} title={item.label} description={item.description} href={item.url ?? item.href} external={Boolean(item.url)} accent={index % 2 === 0 ? 'lime' : 'mint'} />
+          <ProjectCard number={`0${index + 1}`} title={item.label} description={item.description} href={item.href} accent={index % 2 === 0 ? 'lime' : 'mint'} />
         </li>
       ))}
     </ul>

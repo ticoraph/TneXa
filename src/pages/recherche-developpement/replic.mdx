@@ -4,38 +4,16 @@ title: "Projet Replic"
 description: "Projet R&D de TneXa : un chatbot qui incarne les personnages d'un film, avec fine-tuning pour le style et RAG pour les faits."
 eyebrow: R&D
 intro: "Discuter avec un personnage de film."
-tags: [Llama 3.1, QLoRA, RAG, pgvector, vLLM, Modal]
+repos:
+  - { label: "Voir le dépôt GitHub", href: "https://github.com/ticoraph/Replic" }
+facts:
+  - { label: Modèle, value: "Llama 3.1 8B, fine-tuning QLoRA, servi par vLLM sur Modal" }
+  - { label: Faits, value: "RAG avec pgvector" }
+  - { label: Données, value: "Jeu de données en français tiré du scénario, puis enrichi" }
+  - { label: API, value: "FastAPI sur AWS App Runner" }
+  - { label: Entraînement, value: "GitHub Actions, SageMaker ou Vertex AI, instances spot, suivi Weights & Biases" }
+  - { label: Évaluation, value: "RAGAS (faits), juge LLM (fidélité au personnage)" }
 back: { href: /recherche-developpement, label: Tous les projets R&D }
 ---
 
-## Contexte
-
-Un film culte. Des personnages qui ont une voix : Jules, Vincent, Mia, Marsellus, Butch, Winston Wolf. Peut-on leur parler ?
-
-## Problème
-
-Un modèle généraliste parle bien, mais pas comme Jules. Et il invente des détails sur le film.
-
-## Solution
-
-Deux briques. Un fine-tuning (QLoRA) de Llama 3.1 8B pour le style. Un RAG pour les faits.
-
-## Architecture
-
-- Un jeu de données en français, tiré du scénario puis enrichi.
-- Une base vectorielle (pgvector) pour retrouver les bonnes scènes.
-- Un modèle servi par vLLM sur Modal.
-- Une API FastAPI.
-- Un suivi des entraînements avec Weights & Biases.
-
-## Déploiement
-
-Le modèle tourne sur un GPU serverless qui s’éteint quand personne ne parle. L’API est sur AWS App Runner. L’entraînement se lance à la demande depuis GitHub Actions, sur SageMaker ou Vertex AI, en instances spot.
-
-## Impact
-
-Deux évaluations en place : la justesse des faits (RAGAS) et la fidélité au personnage (un juge LLM, comparé à un modèle sans fine-tuning).
-
-## Apprentissage
-
-Le fine-tuning donne la voix. Le RAG donne les faits. Les deux se mesurent séparément.
+Un film culte, des personnages qui ont une voix : Jules, Vincent, Mia, Marsellus, Butch, Winston Wolf. Un modèle généraliste parle bien, mais pas comme Jules, et il invente des détails sur le film. Replic combine deux briques : un fine-tuning pour le style et un RAG pour les faits. Le modèle tourne sur un GPU serverless qui s’éteint quand personne ne parle. Les deux briques se mesurent séparément, la justesse des faits d’un côté, la fidélité au personnage de l’autre, face à un modèle sans fine-tuning.
