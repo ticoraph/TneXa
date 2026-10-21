@@ -22,6 +22,7 @@ const {
   eyebrow = 'Réalisation',
   intro,
   status,
+  image,
   facts = [],
   ia,
   site,
@@ -51,6 +52,18 @@ const next = section?.nextLabel && siblings.length > 1 && index >= 0 ? siblings[
             <a class="text-link" href={repo.href} target="_blank" rel="noopener noreferrer">{repo.label} ↗<span class="visually-hidden"> (nouvel onglet)</span></a>
           ))}
         </div>
+      )}
+      {image && (
+        <img
+          class="case-image"
+          src={image.src}
+          srcset={image.srcset}
+          sizes="(min-width: 64rem) 30rem, 100vw"
+          width={image.width}
+          height={image.height}
+          alt={image.alt}
+          decoding="async"
+        />
       )}
     </header>
 
@@ -103,6 +116,14 @@ const next = section?.nextLabel && siblings.length > 1 && index >= 0 ? siblings[
 
   .case-head .lede {
     margin: 1rem 0 0;
+  }
+
+  .case-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 1.5rem;
+    border-radius: var(--radius-md);
   }
 
   .case-links {

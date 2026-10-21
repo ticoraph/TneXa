@@ -14,3 +14,4 @@
 # Notes de travail locales (non publiées)
 /docs/
 .claude/settings.local.json
+/medias/
