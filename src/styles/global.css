@@ -328,6 +328,23 @@ p {
   text-decoration: none;
 }
 
+.brand-text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.brand-name {
+  font-size: 2rem;
+}
+
+.brand-by {
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
 .brand-mark {
   position: relative;
   flex: none;
@@ -577,13 +594,18 @@ p {
 
 .prose h3 {
   margin-top: 2rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1rem;
 }
 
 .prose p,
 .prose li {
   color: var(--ink-soft);
   font-size: 1.05rem;
+}
+
+.prose p {
+  hyphens: auto;
+  text-align: justify;
 }
 
 .prose strong {
@@ -620,6 +642,43 @@ p {
   border-radius: var(--radius-sm);
   color: #5a4300;
   background: #fff5c7;
+}
+
+/* Effets de défilement de l'accueil. `.js-motion` est posée par le layout seulement
+   avec JavaScript et sans `prefers-reduced-motion` : sinon, tout reste visible. */
+
+:root {
+  --w-dim: rgba(7, 27, 24, 0.16);
+  --w-on: var(--ink);
+}
+
+.js-motion .w {
+  color: var(--w-dim);
+  transition: color 400ms ease;
+}
+
+.js-motion .w.on {
+  color: var(--w-on);
+}
+
+.js-motion :is(.home-lead, .home-text) p:not([data-ready]) {
+  opacity: 0;
+  animation: show-late 0s 1.5s forwards;
+}
+
+.js-motion :is(.home-text > h2, .home-art) {
+  opacity: 0;
+  transform: translateY(1.75rem);
+  transition: opacity 800ms ease, transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.js-motion :is(.home-text > h2, .home-art).in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes show-late {
+  to { opacity: 1; }
 }
 
 /* Cartes de liste (expertises, réalisations, R&D) */

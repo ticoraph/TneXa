@@ -1,0 +1,309 @@
+---
+// Illustrations décoratives de la page d'accueil, en SVG animé en CSS (aucun JavaScript).
+// `converge` est dessinée pour un fond sombre ; les autres pour le fond papier.
+interface Props {
+  name: 'orbit' | 'helix' | 'converge' | 'loop';
+}
+
+const { name } = Astro.props;
+
+const rad = (deg: number) => (deg * Math.PI) / 180;
+const pt = (cx: number, cy: number, r: number, deg: number) => ({
+  x: +(cx + r * Math.cos(rad(deg))).toFixed(1),
+  y: +(cy + r * Math.sin(rad(deg))).toFixed(1),
+});
+
+// Orbites : des nœuds répartis sur trois cercles qui tournent autour du cœur.
+const orbits = [
+  { r: 110, cls: 'cw slow', nodes: [{ a: 20, s: 9, c: 'lime' }, { a: 200, s: 6, c: 'ink' }] },
+  { r: 160, cls: 'ccw', nodes: [{ a: 100, s: 11, c: 'mint' }, { a: 250, s: 7, c: 'lime' }, { a: 340, s: 5, c: 'ink' }] },
+  { r: 190, cls: 'cw', nodes: [{ a: 60, s: 4, c: 'mint' }] },
+].map((o) => ({ ...o, nodes: o.nodes.map((n) => ({ ...n, ...pt(200, 200, o.r, n.a) })) }));
+
+// Hélice : deux brins en sinusoïde reliés par des barreaux. Le motif se répète tous les
+// PERIOD pixels, ce qui permet une boucle sans à-coup.
+const PERIOD = 160;
+const AMP = 64;
+const HEIGHT = 480;
+const wave = (y: number) => Math.sin((2 * Math.PI * y) / PERIOD);
+const front = (y: number) => Math.cos((2 * Math.PI * y) / PERIOD);
+const strand = (sign: 1 | -1) =>
+  Array.from({ length: HEIGHT / 4 + 1 }, (_, i) => `${i ? 'L' : 'M'}${(160 + sign * AMP * wave(i * 4)).toFixed(1)} ${i * 4}`).join(' ');
+const rungs = Array.from({ length: HEIGHT / 10 + 1 }, (_, i) => {
+  const y = i * 10;
+  return { y, x1: 160 - AMP * wave(y), x2: 160 + AMP * wave(y), o: 0.15 + 0.55 * Math.abs(wave(y)) };
+});
+const beads = Array.from({ length: HEIGHT / 20 + 1 }, (_, i) => {
+  const y = i * 20;
+  const z = front(y);
+  return { y, x: 160 + AMP * wave(y), z, r: 4.5 + 2.5 * z, o: 0.55 + 0.45 * ((z + 1) / 2) };
+});
+
+// Convergence : cinq sources de données (statistiques, vision, langage, agents, automatisation).
+const sources = [-90, -18, 54, 126, 198].map((a, i) => ({ i, ...pt(200, 200, 140, a) }));
+const glyphs = [
+  'M-8 7V1M0 7V-5M8 7V-8',
+  'M-11 0Q0-10 11 0Q0 10-11 0ZM-3 0a3 3 0 1 0 6 0a3 3 0 1 0-6 0',
+  'M-10-7H10V4H0L-6 9V4H-10Z',
+  'M0-11L3-3L11 0L3 3L0 11L-3 3L-11 0L-3-3Z',
+  'M-8 0A8 8 0 0 1 6-5.6M6-5.6L7-10M6-5.6L1.5-5M8 0A8 8 0 0 1-6 5.6M-6 5.6L-7 10M-6 5.6L-1.5 5',
+];
+
+// Boucle : un anneau qui tourne autour de trois barres (agilité, observabilité, stabilité).
+const bars = [
+  { x: 148, h: 70, cls: 'lime', d: '2.4s' },
+  { x: 188, h: 112, cls: 'ink', d: '3.1s' },
+  { x: 228, h: 90, cls: 'mint', d: '2.7s' },
+];
+---
+
+{name === 'orbit' && (
+  <svg class="art" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+    <g class="ring">
+      <circle cx="200" cy="200" r="60" />
+      <circle cx="200" cy="200" r="110" />
+      <circle cx="200" cy="200" r="160" />
+      <circle cx="200" cy="200" r="190" class="dashed" />
+    </g>
+    {orbits.map((o) => (
+      <g class={`spin ${o.cls}`}>
+        {o.nodes.map((n) => <line class="spoke" x1="200" y1="200" x2={n.x} y2={n.y} />)}
+        {o.nodes.map((n) => <circle class={`node ${n.c}`} cx={n.x} cy={n.y} r={n.s} />)}
+      </g>
+    ))}
+    <circle class="ping" cx="200" cy="200" r="34" />
+    <circle class="core" cx="200" cy="200" r="34" />
+    <rect class="bar-lime" x="186" y="190" width="24" height="6" rx="2" />
+    <rect class="bar-lime" x="193" y="201" width="24" height="6" rx="2" />
+    <circle class="dot-mint" cx="213" cy="215" r="3.2" />
+  </svg>
+)}
+
+{name === 'helix' && (
+  <svg class="art helix" viewBox="0 0 320 320" aria-hidden="true" focusable="false">
+    <g class="helix-run">
+      {rungs.map((r) => <line x1={r.x1.toFixed(1)} y1={r.y} x2={r.x2.toFixed(1)} y2={r.y} class="rung" style={`opacity:${r.o.toFixed(2)}`} />)}
+      <path class="strand strand-b" d={strand(-1)} />
+      <path class="strand strand-a" d={strand(1)} />
+      {beads.map((b) => (
+        <>
+          <circle class="bead-b" cx={(320 - b.x).toFixed(1)} cy={b.y} r={(4.5 - 2.5 * b.z).toFixed(1)} style={`opacity:${(0.55 + 0.45 * ((1 - b.z) / 2)).toFixed(2)}`} />
+          <circle class="bead-a" cx={b.x.toFixed(1)} cy={b.y} r={b.r.toFixed(1)} style={`opacity:${b.o.toFixed(2)}`} />
+        </>
+      ))}
+    </g>
+  </svg>
+)}
+
+{name === 'converge' && (
+  <svg class="art" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+    <circle class="outer" cx="200" cy="200" r="188" />
+    {sources.map((s) => (
+      <path class="flow" d={`M${s.x} ${s.y}L200 200`} style={`animation-delay:${-s.i * 0.32}s`} />
+    ))}
+    <circle class="ping lime" cx="200" cy="200" r="30" />
+    <circle class="core-lime" cx="200" cy="200" r="30" />
+    <rect class="bar-ink" x="188" y="192" width="20" height="5" rx="2" />
+    <rect class="bar-ink" x="194" y="202" width="20" height="5" rx="2" />
+    {sources.map((s) => (
+      <g transform={`translate(${s.x} ${s.y})`}>
+        <circle class="src" r="25" />
+        <path class="glyph" d={glyphs[s.i]} />
+      </g>
+    ))}
+  </svg>
+)}
+
+{name === 'loop' && (
+  <svg class="art" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+    <circle class="base-ring" cx="200" cy="200" r="150" />
+    <g class="spin cw fast">
+      <circle class="arc arc-lime" cx="200" cy="200" r="150" />
+      <circle class="arc arc-ink" cx="200" cy="200" r="150" transform="rotate(180 200 200)" />
+    </g>
+    <line class="floor" x1="130" y1="262" x2="270" y2="262" />
+    {bars.map((b) => (
+      <rect class={`pillar ${b.cls}`} x={b.x} y={262 - b.h} width="24" height={b.h} rx="7" style={`animation-duration:${b.d}`} />
+    ))}
+  </svg>
+)}
+
+<style>
+  .art {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  /* Orbite */
+
+  .ring circle {
+    fill: none;
+    stroke: var(--ink);
+    stroke-opacity: 0.13;
+    stroke-width: 1.5;
+  }
+
+  .ring .dashed {
+    stroke-dasharray: 2 9;
+    stroke-linecap: round;
+    stroke-opacity: 0.35;
+  }
+
+  .spin {
+    transform-origin: 200px 200px;
+    animation: spin 34s linear infinite;
+  }
+
+  .spin.slow { animation-duration: 52s; }
+  .spin.fast { animation-duration: 9s; }
+  .spin.ccw { animation-direction: reverse; animation-duration: 44s; }
+
+  .spoke {
+    stroke: var(--ink);
+    stroke-opacity: 0.12;
+    stroke-width: 1.5;
+  }
+
+  .node {
+    stroke: var(--ink);
+    stroke-width: 2;
+  }
+
+  .node.lime { fill: var(--lime); }
+  .node.mint { fill: var(--mint); }
+  .node.ink { fill: var(--ink); }
+
+  .core { fill: var(--ink); }
+  .bar-lime { fill: var(--lime); }
+  .dot-mint { fill: var(--mint); }
+
+  .ping {
+    fill: none;
+    stroke: var(--mint);
+    stroke-width: 2;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ping 3.2s ease-out infinite;
+  }
+
+  .ping.lime { stroke: var(--lime); }
+
+  /* Hélice */
+
+  .helix {
+    mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  }
+
+  .helix-run {
+    animation: climb 9s linear infinite;
+  }
+
+  .strand {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .strand-a { stroke: var(--ink); stroke-width: 3; }
+  .strand-b { stroke: var(--lime-deep); stroke-width: 3.5; }
+  .rung { stroke: var(--mint); stroke-width: 2; }
+  .bead-a { fill: var(--ink); }
+  .bead-b { fill: var(--lime); stroke: var(--ink); stroke-width: 1.5; }
+
+  /* Convergence */
+
+  .outer {
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 2 9;
+    stroke-linecap: round;
+    stroke-opacity: 0.18;
+    stroke-width: 1.5;
+  }
+
+  .flow {
+    fill: none;
+    stroke: var(--mint);
+    stroke-dasharray: 3 13;
+    stroke-linecap: round;
+    stroke-opacity: 0.75;
+    stroke-width: 2.5;
+    animation: flow 1.7s linear infinite;
+  }
+
+  .core-lime { fill: var(--lime); }
+  .bar-ink { fill: var(--ink); }
+
+  .src {
+    fill: var(--ink);
+    stroke: var(--mint);
+    stroke-width: 2;
+  }
+
+  .glyph {
+    fill: none;
+    stroke: var(--mint);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+  }
+
+  /* Boucle */
+
+  .base-ring {
+    fill: none;
+    stroke: var(--ink);
+    stroke-opacity: 0.12;
+    stroke-width: 2;
+  }
+
+  .arc {
+    fill: none;
+    stroke-linecap: round;
+    stroke-width: 12;
+  }
+
+  .arc-lime { stroke: var(--lime-deep); stroke-dasharray: 300 643; }
+  .arc-ink { stroke: var(--ink); stroke-dasharray: 90 853; }
+
+  .floor {
+    stroke: var(--ink);
+    stroke-linecap: round;
+    stroke-opacity: 0.3;
+    stroke-width: 2;
+  }
+
+  .pillar {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: breathe 2.8s ease-in-out infinite alternate;
+  }
+
+  .pillar.lime { fill: var(--lime-deep); }
+  .pillar.ink { fill: var(--ink); }
+  .pillar.mint { fill: var(--mint); }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes ping {
+    from { opacity: 0.9; transform: scale(1); }
+    to { opacity: 0; transform: scale(2.1); }
+  }
+
+  @keyframes climb {
+    from { transform: translateY(-160px); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes flow {
+    to { stroke-dashoffset: -16; }
+  }
+
+  @keyframes breathe {
+    from { transform: scaleY(0.55); }
+    to { transform: scaleY(1); }
+  }
+</style>

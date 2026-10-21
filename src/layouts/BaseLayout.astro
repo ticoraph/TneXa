@@ -47,9 +47,12 @@ const currentPath = Astro.url.pathname;
     <header class="site-header">
       <div class="container">
         <div class="nav-shell">
-          <a class="brand" href="/" aria-label="TneXa, accueil">
+          <a class="brand" href="/" aria-label={`${siteConfig.name} by ${siteConfig.founder}, accueil`}>
             <span class="brand-mark" aria-hidden="true"></span>
-            TneXa
+            <span class="brand-text">
+              <span class="brand-name">{siteConfig.name}</span>
+              <span class="brand-by">By {siteConfig.founder}</span>
+            </span>
           </a>
           <nav class="desktop-nav" aria-label="Navigation principale">
             {siteConfig.navigation.map((item) => item.children ? (
@@ -100,7 +103,7 @@ const currentPath = Astro.url.pathname;
               <span class="brand-mark" aria-hidden="true"></span>
               TneXa
             </a>
-            <p class="footer-statement">L’IA qui passe à l’action. Connectée à vos données.</p>
+            <p class="footer-statement">Tout seul on va plus vite, ensemble on va plus loin.</p>
           </div>
           <a class="footer-contact" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
         </div>

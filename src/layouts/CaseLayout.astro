@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import PhaseCycle from '../components/PhaseCycle.astro';
 import { siteConfig } from '../config';
 
 // Gabarit commun des fiches Réalisations et R&D.
@@ -33,6 +34,7 @@ const {
 const section = siteConfig.navigation.find((item) => item.href === back?.href);
 const siblings = section?.children ?? [];
 const index = siblings.findIndex((child) => child.href === Astro.url.pathname);
+const phase = index >= 0 ? siblings[index].phase : undefined;
 const next = section?.nextLabel && siblings.length > 1 && index >= 0 ? siblings[(index + 1) % siblings.length] : undefined;
 ---
 
@@ -72,6 +74,8 @@ const next = section?.nextLabel && siblings.length > 1 && index >= 0 ? siblings[
       <p class="case-ia-label" id="case-ia-titre">IA</p>
       {ia && <p class="case-ia-text">{ia}</p>}
     </aside>
+
+    {phase && <div class="case-phases"><PhaseCycle current={phase} /></div>}
 
     {back && (
       <nav class="case-nav" aria-label="Navigation entre les fiches">
@@ -213,6 +217,7 @@ const next = section?.nextLabel && siblings.length > 1 && index >= 0 ? siblings[
       font-size: 0.9rem;
     }
 
+    .case-phases,
     .case-ia,
     .case-nav {
       grid-column: 1 / -1;

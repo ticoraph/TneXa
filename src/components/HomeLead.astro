@@ -1,0 +1,33 @@
+---
+// Phrase d'ouverture de la page d'accueil : en grand, les mots s'allument au défilement.
+---
+
+<section class="home-lead container" aria-label="Présentation">
+  <slot />
+</section>
+
+<style>
+  .home-lead {
+    padding-block: clamp(2.5rem, 9vw, 7rem) clamp(2rem, 6vw, 4rem);
+  }
+
+  .home-lead::before {
+    display: block;
+    width: 3.5rem;
+    height: 0.4rem;
+    margin-bottom: 1.5rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--lime), var(--mint));
+    content: '';
+  }
+
+  .home-lead :global(p) {
+    max-width: 24em;
+    margin: 0;
+    font-size: clamp(1.55rem, 0.9rem + 3.2vw, 3.3rem);
+    font-weight: 650;
+    letter-spacing: -0.035em;
+    line-height: 1.16;
+    text-wrap: balance;
+  }
+</style>

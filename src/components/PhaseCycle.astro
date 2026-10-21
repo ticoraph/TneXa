@@ -1,0 +1,86 @@
+---
+import { rdPhases } from '../config';
+
+// Cycle d'un projet de R&D. Sans `current`, il présente seulement les cinq phases ;
+// avec `current` (1 à 5), la phase en cours est mise en surbrillance.
+interface Props {
+  current?: number;
+}
+
+const { current } = Astro.props;
+---
+
+<ol class="phases" aria-label="Cycle d’un projet de R&D">
+  {rdPhases.map((label, i) => (
+    <li class:list={{ done: current !== undefined && i + 1 < current, current: i + 1 === current }} aria-current={i + 1 === current ? 'step' : undefined}>
+      <span class="phases-num" aria-hidden="true">{i + 1}</span>
+      <span>{label}</span>
+      {i + 1 === current && <span class="visually-hidden"> (phase en cours)</span>}
+    </li>
+  ))}
+</ol>
+
+<style>
+  .phases {
+    display: grid;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    min-height: 2.25rem;
+    padding: 0.25rem 0.9rem 0.25rem 0.35rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--white);
+    font-size: 0.9rem;
+    font-weight: 750;
+  }
+
+  .phases-num {
+    display: grid;
+    width: 1.6rem;
+    height: 1.6rem;
+    flex: none;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--paper-deep);
+    font-size: 0.75rem;
+  }
+
+  .done {
+    color: var(--ink-soft);
+    background: var(--paper-deep);
+  }
+
+  .current {
+    border-color: var(--ink);
+    color: var(--ink);
+    background: var(--lime);
+  }
+
+  .current .phases-num {
+    color: var(--white);
+    background: var(--ink);
+  }
+
+  @media (min-width: 40rem) {
+    .phases {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    li {
+      justify-content: center;
+      padding-inline: 0.35rem;
+    }
+
+    .phases-num {
+      display: none;
+    }
+  }
+</style>

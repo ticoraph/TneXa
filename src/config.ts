@@ -4,6 +4,8 @@ export interface NavChild {
   description: string;
   /** Mention courte affichée sur la fiche, par exemple l'état d'avancement. */
   tag?: string;
+  /** Numéro (1 à 5) de la phase du cycle R&D où en est le projet. */
+  phase?: number;
   product?: boolean;
 }
 
@@ -16,8 +18,12 @@ export interface NavItem {
   children?: NavChild[];
 }
 
+/** Cycle d'un projet de R&D, dans l'ordre. */
+export const rdPhases = ['Imaginer', 'Définir', 'Développer', 'Implémenter', 'Lancer'] as const;
+
 export const siteConfig = {
   name: 'TneXa',
+  founder: 'Raphaël Montico',
   email: 'contact@tnexa.fr',
   description:
     "TneXa conçoit des systèmes d'intelligence artificielle connectés à vos données, capables d'analyser, décider, agir et expliquer leurs résultats.",
@@ -29,17 +35,17 @@ export const siteConfig = {
       nextLabel: 'Réalisation suivante',
       children: [
         {
-          label: 'SkiPri.fr',
+          label: 'SkiPri',
           href: '/realisations/skipri',
           description: 'Comparer les forfaits de ski de toutes les stations.',
         },
         {
-          label: 'SurPri.fr',
+          label: 'SurPri',
           href: '/realisations/surpri',
           description: 'Choisir sa voiture électrique avec des agents IA.',
         },
         {
-          label: 'PulpFiction.fr',
+          label: 'PulpFiction',
           href: '/realisations/pulpfiction',
           description: 'La collection Pulp Fiction, en ligne.',
         },
@@ -75,25 +81,28 @@ export const siteConfig = {
       nextLabel: 'Projet suivant',
       children: [
         {
-          label: 'Projet 3842',
+          label: '3842',
           href: '/recherche-developpement/3842',
           description: 'Lire la neige sur les webcams de montagne.',
-          tag: 'En conception',
+          phase: 2,
         },
         {
-          label: 'Projet Replic',
+          label: 'Replic',
           href: '/recherche-developpement/replic',
           description: 'Discuter avec un personnage de film.',
+          phase: 4,
         },
         {
-          label: 'Projet Operant',
+          label: 'Operant',
           href: '/recherche-developpement/operant',
           description: 'Agents autonomes et paiements programmables.',
+          phase: 1,
         },
         {
-          label: 'Projet BeeDoo',
+          label: 'BeeDoo',
           href: '/recherche-developpement/beedoo',
           description: 'Un robot de compagnie pour les personnes âgées.',
+          phase: 3,
         },
       ],
     },
