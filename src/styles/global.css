@@ -505,11 +505,6 @@ p {
   color: var(--white);
 }
 
-.footer-statement {
-  max-width: 28rem;
-  margin: 0.25rem 0 0;
-}
-
 .footer-contact {
   display: inline-flex;
   align-items: center;
@@ -734,10 +729,6 @@ p {
     display: flex;
     gap: 1.5rem;
     align-items: center;
-  }
-
-  .footer-statement {
-    margin: 0;
   }
 
   /* Souris : cibles plus basses, pour que page et pied de page tiennent à l'écran. */
