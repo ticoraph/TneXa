@@ -10,17 +10,26 @@ interface Props {
 const { current } = Astro.props;
 ---
 
-<ol class="phases" aria-label="Cycle d’un projet de R&D">
+<p class="phases-title" id="phases-titre">En cours de…</p>
+<ol class="phases" aria-labelledby="phases-titre">
   {rdPhases.map((label, i) => (
     <li class:list={{ done: current !== undefined && i + 1 < current, current: i + 1 === current }} aria-current={i + 1 === current ? 'step' : undefined}>
       <span class="phases-num" aria-hidden="true">{i + 1}</span>
       <span>{label}</span>
-      {i + 1 === current && <span class="visually-hidden"> (phase en cours)</span>}
+      {i + 1 === current && <span class="visually-hidden"> (en cours)</span>}
     </li>
   ))}
 </ol>
 
 <style>
+  .phases-title {
+    margin: 0 0 0.6rem;
+    color: var(--ink);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+
   .phases {
     display: grid;
     gap: 0.4rem;

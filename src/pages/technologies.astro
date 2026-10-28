@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TechGroup from '../components/TechGroup.astro';
+import { technologyGroups } from '../data/technologies';
+---
+
+<BaseLayout
+  title="Technologies"
+  description="Technologies et outils utilisés par TneXa : IA générative, MLOps, données, cloud, sécurité et développement web."
+>
+  <header class="content-hero container">
+    <p class="eyebrow">Technologies</p>
+    <h1>Les outils par domaine.</h1>
+    <p class="lede">Les outils utilisés pour concevoir, déployer et surveiller des systèmes d’IA.</p>
+  </header>
+
+  <div class="container tech-groups">
+    {technologyGroups.map((group) => <TechGroup title={group.title} items={group.items} />)}
+  </div>
+
+  <p class="container tech-note">Les logos appartiennent à leurs propriétaires respectifs.</p>
+</BaseLayout>
+
+<style>
+  .tech-groups {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .tech-note {
+    margin-block: 1.5rem 0;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+  }
+
+  @media (min-width: 56rem) {
+    .tech-groups {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+  }
+</style>

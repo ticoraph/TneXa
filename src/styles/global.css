@@ -535,6 +535,11 @@ p {
   min-height: 2.75rem;
 }
 
+.footer-links {
+  flex-wrap: wrap;
+  gap: 0 2rem;
+}
+
 /* Pages éditoriales (MDX) */
 
 .content-hero {

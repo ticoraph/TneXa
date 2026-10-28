@@ -19,7 +19,7 @@ export interface NavItem {
 }
 
 /** Cycle d'un projet de R&D, dans l'ordre. */
-export const rdPhases = ['Imaginer', 'Définir', 'Développer', 'Implémenter', 'Lancer'] as const;
+export const rdPhases = ['Imagination', 'Définition', 'Développement', 'Implémentation', 'Lancement'] as const;
 
 export const siteConfig = {
   name: 'TneXa',
@@ -77,7 +77,7 @@ export const siteConfig = {
     {
       label: 'Recherche & Développement',
       href: '/recherche-developpement',
-      description: 'Ce que j’explore aujourd’hui pour livrer demain.',
+      description: 'Les pistes explorées aujourd’hui pour livrer demain.',
       nextLabel: 'Projet suivant',
       children: [
         {

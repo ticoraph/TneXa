@@ -1,0 +1,95 @@
+---
+import type { Technology } from '../data/technologies';
+
+interface Props {
+  title: string;
+  items: Technology[];
+}
+
+const { title, items } = Astro.props;
+
+const headingId = `tech-${title
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[̀-ͯ]/g, '')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-|-$/g, '')}`;
+
+// Les SVG sont normalisés par scripts/fetch-logos.mjs : décoratifs et colorés par `currentColor`.
+const logos = import.meta.glob<string>('../assets/logos/*.svg', { query: '?raw', import: 'default', eager: true });
+
+function logoOf(item: Technology): string | undefined {
+  if (!item.logo) return undefined;
+  const svg = logos[`../assets/logos/${item.logo}.svg`];
+  if (!svg) throw new Error(`Logo introuvable pour « ${item.name} » : src/assets/logos/${item.logo}.svg`);
+  return svg;
+}
+---
+
+<section class="tech-group" aria-labelledby={headingId}>
+  <h2 id={headingId}>{title}</h2>
+  <ul>
+    {items.map((item) => (
+      <li>
+        {logoOf(item) && <span class="tech-logo" set:html={logoOf(item)} />}
+        {item.name}
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .tech-group {
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+  }
+
+  h2 {
+    margin-bottom: 0.9rem;
+    font-size: 1.1rem;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--paper);
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .tech-logo {
+    display: inline-flex;
+    flex: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--ink);
+  }
+
+  .tech-logo :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: 56rem) {
+    .tech-group {
+      padding: 1.25rem;
+    }
+  }
+</style>
