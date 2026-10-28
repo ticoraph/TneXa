@@ -16,7 +16,7 @@ Avant de considérer une modification terminée : `npm run check` doit passer ; 
 
 ## Architecture
 
-- `src/config.ts` : source unique du nom, de l'e-mail, de la description et de la navigation. Ne pas dupliquer ces valeurs dans les pages.
+- `src/config.ts` : source unique du nom, de l'adresse de contact, de la description et de la navigation. Ne pas dupliquer ces valeurs dans les pages. L'adresse y est coupée en deux (`contact.user`, `contact.domain`) et s'affiche avec `ContactEmail.astro` (lien `mailto:` construit en JavaScript). Ne jamais écrire l'adresse en clair, ni dans le HTML, ni dans le JSON-LD, ni dans un `.mdx` (D-056).
 - `src/layouts/BaseLayout.astro` : `<head>` (titre, canonical, Open Graph, JSON-LD), lien d'évitement, en-tête et pied de page. `ContentLayout.astro` enveloppe les pages MDX et lit `title`, `description`, `eyebrow` et `intro` dans le frontmatter.
 - `src/pages/` : le routage vient des fichiers. `.mdx` pour le texte éditorial, `.astro` pour les pages structurées (accueil, réalisations, 404).
 - `src/components/` : composants réutilisables, avec leurs styles `<style>` locaux.
@@ -26,21 +26,21 @@ Avant de considérer une modification terminée : `npm run check` doit passer ; 
 
 ## Conventions
 
-- Les décisions (les nôtres et celles de Raphaël) sont notées dans `docs/DECISIONS.md`. Ajouter une ligne à chaque choix qui engage la suite.
-- `docs/SOMMAIRE.md` est la référence de la structure et du contenu du site.
+- Les décisions (les nôtres et celles de Raphaël) sont notées dans `docs/DECISIONS.md`. Ajouter une ligne à chaque choix qui engage la suite. Le dossier `docs/` reste local : il est dans `.gitignore` et n'est pas publié avec le dépôt.
+- `docs/SOMMAIRE.md` (local) est la référence de la structure et du contenu du site.
 - Textes et commentaires en français, avec les accents et la typographie française (guillemets « », espaces avant `:`, `;`, `?`, `!`). Phrases courtes, ton concret, sans jargon inutile.
 - Voix du site (D-054) : aucune première personne, ni au pluriel (« nous », « on », « notre », « nos ») ni au singulier (« je », « j' », « mon », « ma », « mes »). Écrire de façon neutre : TneXa comme sujet (« TneXa conçoit… »), des tournures impersonnelles ou passives, et s'adresser au visiteur avec « vous ». Cela vaut aussi pour les descriptions dans `src/config.ts` et les pages `.astro`.
 - Pas de barre oblique finale dans les URL (`trailingSlash: 'never'`) : écrire `/realisations`, pas `/realisations/`.
 - Le contenu éditorial reste dans les `.mdx` ; la mise en forme reste dans les composants et `global.css`.
 - Mobile First : le CSS de base vise 360 px, les écrans larges s'ajoutent avec `@media (min-width: …)`. Pas de `max-width` dans les médias.
 - Accessibilité : un seul `<h1>` par page, hiérarchie de titres continue, `aria-label` sur les liens d'icônes, focus visible, contraste suffisant, respect de `prefers-reduced-motion`.
-- Référencement : le site est volontairement invisible des moteurs de recherche et des IA (D-032). `BaseLayout` émet `noindex` sur toutes les pages, `public/_headers` ajoute `X-Robots-Tag`, `public/robots.txt` interdit tous les robots. Ne pas rouvrir l'indexation (ni ajouter de sitemap) sans demande explicite. Chaque page garde un `title` et une `description` propres.
+- Référencement : le site est ouvert aux moteurs de recherche et aux IA (D-055) : pas de `noindex`, pas de `X-Robots-Tag`, `public/robots.txt` autorise tous les robots. Pas de sitemap pour l'instant. Chaque page garde un `title` et une `description` propres, et un `canonical`.
 - TypeScript strict (`astro/tsconfigs/strict`). Les composants déclarent une interface `Props`.
 - Pas de dépendance ajoutée sans raison forte : le site est volontairement léger, avec très peu de JavaScript côté client (menu mobile).
 
 ## Déploiement
 
-Cloudflare Workers Static Assets, via `npm run deploy`. Procédure complète dans `docs/DEPLOIEMENT_CLOUDFLARE.md`. Ne pas déployer, ni modifier le DNS, sans demande explicite.
+Cloudflare Workers Static Assets, via `npm run deploy`. Procédure complète dans `docs/DEPLOIEMENT_CLOUDFLARE.md` (local). Le workflow `.github/workflows/deploy.yml` déploie aussi à chaque push sur `main`. Ne pas déployer, ni modifier le DNS, sans demande explicite.
 
 ## Skills du projet
 

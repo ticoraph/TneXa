@@ -24,7 +24,8 @@ export const rdPhases = ['Imagination', 'Définition', 'Développement', 'Implé
 export const siteConfig = {
   name: 'TneXa',
   founder: 'Raphaël Montico',
-  email: 'contact@tnexa.fr',
+  /** Adresse de contact en deux morceaux : l'afficher avec le composant ContactEmail, jamais en clair. */
+  contact: { user: 'contact', domain: 'tnexa.fr' },
   description:
     "TneXa conçoit des systèmes d'intelligence artificielle connectés à vos données, capables d'analyser, décider, agir et expliquer leurs résultats.",
   navigation: [

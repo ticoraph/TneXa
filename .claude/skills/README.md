@@ -8,8 +8,8 @@ Skills téléchargés depuis des dépôts publics et placés ici pour que Claude
 | `accessibility` | Audit WCAG 2.2, navigation au clavier, formulaire de contact | [addyosmani/web-quality-skills](https://github.com/addyosmani/web-quality-skills/tree/main/skills/accessibility) | MIT |
 | `seo` | Balises méta, canonical, JSON-LD, sitemap, `robots.txt` | [addyosmani/web-quality-skills](https://github.com/addyosmani/web-quality-skills/tree/main/skills/seo) | MIT |
 | `workers-best-practices` | `worker/index.js` et `wrangler.jsonc` | [cloudflare/skills](https://github.com/cloudflare/skills/tree/main/skills/workers-best-practices) | Apache 2.0 |
-| `mobile-first` | Règles Mobile First : CSS `min-width`, cibles tactiles, menu mobile, formulaires, vérification à 360 px | Écrit pour TneXa (D-012 dans `docs/DECISIONS.md`) | Propre au projet |
-| `logos` | Ajout et remplacement des logos de la page Technologies (`scripts/fetch-logos.mjs`) | Écrit pour TneXa (D-053 dans `docs/DECISIONS.md`) | Propre au projet |
+| `mobile-first` | Règles Mobile First : CSS `min-width`, cibles tactiles, menu mobile, formulaires, vérification à 360 px | Écrit pour TneXa (décision D-012) | Propre au projet |
+| `logos` | Ajout et remplacement des logos de la page Technologies (`scripts/fetch-logos.mjs`) | Écrit pour TneXa (décision D-053) | Propre au projet |
 
 ## Mise à jour
 

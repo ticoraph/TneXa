@@ -10,7 +10,7 @@ Le site est statique (Astro + MDX). Il n'y a ni formulaire de contact ni code se
 | --- | --- |
 | Génération du site | [Astro](https://astro.build) 7 en mode `static`, sans barre oblique finale |
 | Contenu éditorial | MDX (`@astrojs/mdx`) |
-| Référencement | Aucun : site fermé aux moteurs et aux IA (`noindex`, `robots.txt`, `X-Robots-Tag`) |
+| Référencement | Ouvert aux moteurs de recherche et aux IA (`robots.txt` autorise tous les robots) |
 | Hébergement | Cloudflare Workers Static Assets |
 
 ## Démarrage rapide
@@ -45,30 +45,24 @@ src/
   pages/             une page par fichier : .astro (structurées) ou .mdx (éditoriales)
   styles/global.css  variables de design et styles communs
 public/              favicon, robots.txt et en-têtes de sécurité (_headers)
-docs/                plan du site, guides de déploiement, notes de projet
 ```
 
 ## Modifier le contenu
 
 - les pages éditoriales se trouvent dans `src/pages/**/*.mdx` ; leur en-tête (frontmatter) fournit `title`, `description`, `eyebrow` et `intro` ;
 - la page d'accueil et les pages structurées se trouvent dans `src/pages/**/*.astro` ;
-- l'adresse e-mail, la description et la navigation se trouvent dans `src/config.ts` ;
+- le nom, la description et la navigation se trouvent dans `src/config.ts` ; l'adresse de contact y est coupée en deux et affichée par le composant `ContactEmail`, pour ne pas apparaître en clair dans le HTML ;
 - les couleurs, les espacements et les styles communs se trouvent dans `src/styles/global.css`.
 
 ## Déploiement
 
-Voir [`docs/DEPLOIEMENT_CLOUDFLARE.md`](docs/DEPLOIEMENT_CLOUDFLARE.md) pour la configuration complète (DNS, domaine). Le déploiement se fait avec :
+Le site est servi par Cloudflare Workers Static Assets. Le workflow GitHub Actions (`.github/workflows/deploy.yml`) vérifie le site à chaque push et pull request, puis le déploie à chaque push sur `main`. Il lit les secrets `CLOUDFLARE_API_TOKEN` et `CLOUDFLARE_ACCOUNT_ID`, définis dans les réglages du dépôt.
+
+Pour déployer à la main, avec ces deux variables d'environnement :
 
 ```bash
 npm run deploy
 ```
-
-## Documentation
-
-- [`docs/PLAN_SITE.md`](docs/PLAN_SITE.md) : feuille de route et positionnement ;
-- [`docs/DEPLOIEMENT_CLOUDFLARE.md`](docs/DEPLOIEMENT_CLOUDFLARE.md) : mise en ligne du site ;
-- [`docs/DEPLOIEMENT_OVH.md`](docs/DEPLOIEMENT_OVH.md) : ancienne option d'hébergement statique chez OVHcloud ;
-- [`docs/PROJECT.md`](docs/PROJECT.md), [`docs/TNEXA_IDEAS.md`](docs/TNEXA_IDEAS.md) et [`docs/TNEGA_PLATEFORME_IA.md`](docs/TNEGA_PLATEFORME_IA.md) : notes de cadrage et idées de produits.
 
 ## Travailler avec Claude Code
 

@@ -1,0 +1,26 @@
+---
+import { siteConfig } from '../config';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const { user, domain } = siteConfig.contact;
+// Version lisible sans JavaScript : l'adresse n'apparaît jamais en clair dans le HTML.
+const fallback = `${user} [arobase] ${domain.replace('.', ' [point] ')}`;
+---
+
+<span class={className} data-email-user={user} data-email-domain={domain}>{fallback}</span>
+
+<script>
+  // Remplace chaque repère par un lien mailto: construit au chargement de la page.
+  document.querySelectorAll<HTMLElement>('[data-email-user]').forEach((el) => {
+    const address = `${el.dataset.emailUser}@${el.dataset.emailDomain}`;
+    const link = document.createElement('a');
+    link.href = `mailto:${address}`;
+    link.textContent = address;
+    link.className = el.className;
+    el.replaceWith(link);
+  });
+</script>
